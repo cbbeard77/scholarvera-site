@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ScholarVera — integrity through process, not detection</title>
+<meta name="description" content="ScholarVera builds academic integrity tools that support authentic assessment. WriteSight records how a document was written; our reference checker verifies citations without ever storing student work.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* Landing-only styles */
+  .hero { padding: 86px 0 76px; }
+  .hero-grid { display: grid; grid-template-columns: var(--rail) 1fr; gap: 36px; align-items: start; }
+  .hero .meta { font-family: "IBM Plex Mono", monospace; font-size: 12.5px; color: var(--ink-faint); line-height: 1.9; padding-top: 10px; }
+  .hero h1 { font-size: clamp(38px, 6vw, 62px); letter-spacing: -0.02em; margin: 0 0 22px; }
+  .hero h1 em { font-style: italic; color: var(--accent); }
+  .hero .sub { font-size: 22px; color: var(--ink-soft); max-width: 54ch; margin: 0 0 30px; }
+  .hero .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    font-family: "IBM Plex Mono", monospace; font-size: 13.5px; letter-spacing: 0.03em;
+    text-decoration: none; padding: 12px 20px; border-radius: 7px;
+    display: inline-flex; align-items: center; gap: 8px; transition: transform .12s, background .18s, border-color .18s;
+  }
+  .btn-primary { background: var(--accent); color: #fff; border: 1px solid var(--accent); }
+  .btn-primary:hover { background: var(--accent-2); transform: translateY(-1px); }
+  .btn-ghost { background: transparent; color: var(--ink); border: 1px solid var(--rule); }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Provenance ribbon — the signature element */
+  .ribbon {
+    margin: 74px 0 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+    background: #fff; padding: 0; overflow: hidden;
+  }
+  .ribbon .wrap { display: grid; grid-template-columns: var(--rail) 1fr; gap: 36px; padding-top: 26px; padding-bottom: 26px; align-items: center; }
+  .ribbon .label { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--ink-faint); letter-spacing: 0.1em; text-transform: uppercase; }
+  .track { display: flex; gap: 5px; align-items: flex-end; height: 56px; }
+  .track i {
+    display: block; width: 7px; border-radius: 2px; background: var(--paper-2);
+    border: 1px solid var(--rule);
+  }
+  .track i.typed { background: #C8D6E2; border-color: #A9C0D2; }
+  .track i.pasted { background: #E7D2B6; border-color: #D3B98F; }
+  .track i.rev { background: #CFE0D0; border-color: #A9C9AC; }
+  .track-legend { display: flex; gap: 20px; margin-top: 14px; font-family: "IBM Plex Mono", monospace; font-size: 11.5px; color: var(--ink-faint); }
+  .track-legend span { display: inline-flex; align-items: center; gap: 7px; }
+  .dot { width: 9px; height: 9px; border-radius: 2px; display: inline-block; }
+
+  /* Philosophy */
+  .thesis { padding: 78px 0 10px; }
+  .thesis-grid { display: grid; grid-template-columns: var(--rail) 1fr; gap: 36px; }
+  .thesis .big { font-size: clamp(26px, 3.4vw, 36px); line-height: 1.3; color: var(--ink); margin: 0; max-width: 24ch; font-weight: 600; letter-spacing: -0.01em; }
+  .thesis .big .accent { color: var(--accent); }
+  .thesis .body { color: var(--ink-soft); }
+  .thesis .body p { margin: 0 0 16px; max-width: 60ch; }
+
+  /* Products */
+  .products { padding: 70px 0 0; }
+  .products-grid { display: grid; grid-template-columns: var(--rail) 1fr; gap: 36px; }
+  .prod { padding: 34px 0; border-top: 1px solid var(--rule); display: grid; grid-template-columns: 1fr; gap: 6px; }
+  .prod:first-child { border-top: 2px solid var(--ink); }
+  .prod h3 { font-size: 25px; margin: 0 0 4px; }
+  .prod .role { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--accent); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px; }
+  .prod p { color: var(--ink-soft); margin: 0 0 12px; max-width: 64ch; }
+  .prod .feat { font-family: "IBM Plex Mono", monospace; font-size: 12.5px; color: var(--ink-faint); }
+  .section-label { font-family: "IBM Plex Mono", monospace; font-size: 12.5px; color: var(--ink-faint); letter-spacing: 0.04em; padding-top: 36px; }
+
+  @media (max-width: 760px) {
+    .hero-grid, .ribbon .wrap, .thesis-grid, .products-grid { grid-template-columns: 1fr; gap: 14px; }
+    .hero { padding: 54px 0 48px; }
+    .hero .meta { padding-top: 0; }
+    .prod { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="/"><span class="mark">[sv]</span> ScholarVera</a>
+    <nav class="nav">
+      <a href="#products">Tools</a>
+      <a href="#approach" class="hide-sm">Approach</a>
+      <a href="/support">Support</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="meta">
+        ScholarVera LLC<br>
+        Est. 2026<br>
+        Oklahoma, USA
+      </div>
+      <div>
+        <p class="eyebrow">Academic integrity software</p>
+        <h1>Integrity through <em>process</em>, not detection.</h1>
+        <p class="sub">ScholarVera builds tools that show how scholarly work comes together — so assessment can be a conversation about writing, not a verdict handed down by a machine.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#products">See the tools →</a>
+          <a class="btn btn-ghost" href="#approach">Why process</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ribbon" aria-label="Illustration of document provenance">
+    <div class="wrap">
+      <div class="label">A document,<br>as it was written</div>
+      <div>
+        <div class="track" id="track" role="img" aria-label="A stylized timeline of a document being built: bars represent typed, pasted, and revised passages over time."></div>
+        <div class="track-legend">
+          <span><i class="dot" style="background:#C8D6E2;border:1px solid #A9C0D2"></i> typed</span>
+          <span><i class="dot" style="background:#E7D2B6;border:1px solid #D3B98F"></i> pasted</span>
+          <span><i class="dot" style="background:#CFE0D0;border:1px solid #A9C9AC"></i> revised</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="thesis" id="approach">
+    <div class="wrap thesis-grid">
+      <p class="big">A score that says <span class="accent">"73% AI"</span> ends a conversation. A record of how the work was built begins one.</p>
+      <div class="body">
+        <p>Most academic-integrity tools work by suspicion: they scan a finished document and return a probability that a student cheated. The number is unfalsifiable, the student has no way to answer it, and the faculty member is handed an accusation instead of a teaching moment.</p>
+        <p>ScholarVera takes the opposite stance. Our tools surface what actually happened — how a draft was assembled, whether a citation resolves to a real source — and frame it as something <strong>worth a conversation</strong>, never as a finding. The goal is authentic assessment in competency-based education, not automated policing.</p>
+        <p>That philosophy shapes the engineering. Where a tool can avoid collecting student work, it does. Where a signal could be read as a verdict, it isn't allowed to be.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="products" id="products">
+    <div class="wrap products-grid">
+      <div class="section-label">The tools</div>
+      <div>
+        <article class="prod">
+          <div>
+            <div class="role">Microsoft Word add-in</div>
+            <h3>WriteSight</h3>
+            <p>WriteSight records the provenance of a document — the typing, pasting, and revision that built it — and stores that record inside the file itself. Nothing is sent to a server. The provenance travels with the document and reaches faculty as context for a conversation about the writing, framed as observations rather than conclusions.</p>
+            <p class="feat">Document-resident record · tamper-evident · Windows &amp; Mac</p>
+          </div>
+        </article>
+        <article class="prod">
+          <div>
+            <div class="role">Web tool</div>
+            <h3>Reference verification</h3>
+            <p>Paste a reference list and the tool checks each citation against scholarly sources, flagging the ones that don't resolve to a real work. It is built around a single promise: it will never falsely confirm a fabricated source. The tool holds nothing — references go in, results come back, and no student writing is stored.</p>
+            <p class="feat">Never confirms a fake · no document storage · sortable results</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="legal">
+      <strong style="color:var(--ink-soft)">ScholarVera LLC</strong><br>
+      Academic integrity tools built on a process-not-detection philosophy.
+      WriteSight and the reference verification tool are products of ScholarVera LLC.
+    </div>
+    <div>
+      <a href="/support">Support</a> &nbsp;·&nbsp;
+      <a href="/privacy">Privacy</a> &nbsp;·&nbsp;
+      <a href="/eula">Terms (EULA)</a><br>
+      <span style="color:var(--ink-faint)">chris@scholarvera.com</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Build the provenance ribbon: a deterministic-but-organic sequence of
+  // typed / pasted / revised segments, like a real construction timeline.
+  (function () {
+    var track = document.getElementById('track');
+    if (!track) return;
+    var seq = [
+      ['typed',5],['typed',4],['typed',6],['typed',3],['rev',2],
+      ['typed',5],['typed',7],['pasted',3],['pasted',3],['typed',4],
+      ['typed',6],['rev',3],['typed',5],['typed',4],['typed',6],
+      ['typed',3],['rev',2],['typed',5],['pasted',2],['typed',6],
+      ['typed',4],['typed',7],['typed',5],['rev',3],['typed',4],
+      ['typed',6],['typed',5],['typed',3],['typed',6],['typed',4]
+    ];
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    seq.forEach(function (s, idx) {
+      var bar = document.createElement('i');
+      bar.className = s[0];
+      var h = 16 + s[1] * 5;
+      bar.style.height = reduce ? h + 'px' : '4px';
+      track.appendChild(bar);
+      if (!reduce) {
+        bar.style.transition = 'height .45s cubic-bezier(.2,.7,.2,1)';
+        setTimeout(function () { bar.style.height = h + 'px'; }, 120 + idx * 38);
+      }
+    });
+  })();
+</script>
+</body>
+</html>

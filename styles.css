@@ -1,0 +1,149 @@
+/* ScholarVera — shared styles
+   Design direction: "the margin and the manuscript."
+   The product is about the *process* of writing, so the visual language
+   borrows from the manuscript page: a generous left margin rail (where an
+   editor writes), a serif body for reading, a quiet ink-and-paper palette,
+   and a single ink-blue accent. Restraint is the point — this is a trust
+   artifact, not a sales page. */
+
+:root {
+  --paper:      #FBFAF7;
+  --paper-2:    #F3F1EA;
+  --ink:        #1B1A17;
+  --ink-soft:   #4A483F;
+  --ink-faint:  #6E6B60;
+  --rule:       #D9D5C9;
+  --accent:     #2A4D6E;   /* ink blue */
+  --accent-2:   #3E6E94;
+  --flag:       #9A6A3A;   /* annotation ochre, used sparingly */
+  --maxw:       1080px;
+  --rail:       210px;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  font-size: 19px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+
+/* ---- Utility / display type ---- */
+.eyebrow {
+  font-family: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin: 0 0 14px;
+}
+
+h1, h2, h3 { font-weight: 600; line-height: 1.15; color: var(--ink); }
+
+/* ---- Top bar ---- */
+.topbar {
+  border-bottom: 1px solid var(--rule);
+  background: rgba(251,250,247,0.9);
+  backdrop-filter: saturate(120%) blur(6px);
+  position: sticky; top: 0; z-index: 10;
+}
+.topbar .wrap {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 64px;
+}
+.brand {
+  font-size: 19px; font-weight: 600; letter-spacing: 0.01em;
+  text-decoration: none; color: var(--ink);
+  display: inline-flex; align-items: baseline; gap: 9px;
+}
+.brand .mark {
+  font-family: "IBM Plex Mono", monospace;
+  color: var(--accent); font-weight: 600;
+}
+.nav { display: flex; gap: 26px; }
+.nav a {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 13px; letter-spacing: 0.04em;
+  color: var(--ink-soft); text-decoration: none;
+  padding-bottom: 2px; border-bottom: 1px solid transparent;
+  transition: border-color .18s, color .18s;
+}
+.nav a:hover, .nav a:focus-visible { color: var(--accent); border-color: var(--accent); outline: none; }
+
+/* ---- Footer ---- */
+.site-foot {
+  border-top: 1px solid var(--rule);
+  margin-top: 90px; padding: 40px 0 56px;
+  color: var(--ink-faint);
+  font-family: "IBM Plex Mono", monospace; font-size: 13px; line-height: 1.7;
+}
+.site-foot .wrap { display: flex; flex-wrap: wrap; gap: 28px; justify-content: space-between; }
+.site-foot a { color: var(--ink-soft); text-decoration: none; border-bottom: 1px solid var(--rule); }
+.site-foot a:hover { color: var(--accent); border-color: var(--accent); }
+.site-foot .legal { max-width: 520px; font-family: inherit; }
+
+/* ---- Document pages (privacy / eula / support) ---- */
+.doc { padding: 56px 0 0; }
+.doc-head {
+  display: grid; grid-template-columns: var(--rail) 1fr; gap: 36px;
+  padding-bottom: 32px; margin-bottom: 8px;
+  border-bottom: 2px solid var(--ink);
+}
+.doc-head .meta { font-family: "IBM Plex Mono", monospace; font-size: 12.5px; color: var(--ink-faint); line-height: 1.8; }
+.doc-head h1 { font-size: 40px; margin: 0 0 12px; letter-spacing: -0.01em; }
+.doc-head .lede { font-size: 20px; color: var(--ink-soft); margin: 0; max-width: 60ch; }
+
+.doc-body { display: grid; grid-template-columns: var(--rail) 1fr; gap: 36px; }
+.doc-body section { padding: 30px 0; border-bottom: 1px solid var(--rule); }
+.doc-body section:last-child { border-bottom: none; }
+.doc-body .num {
+  font-family: "IBM Plex Mono", monospace; font-size: 12.5px;
+  color: var(--accent); letter-spacing: 0.04em;
+  padding-top: 6px;
+}
+.doc-body h2 { font-size: 23px; margin: 0 0 14px; }
+.doc-body h3 { font-size: 18px; margin: 22px 0 8px; color: var(--ink-soft); }
+.doc-body p { margin: 0 0 14px; color: var(--ink-soft); max-width: 68ch; }
+.doc-body ul { margin: 0 0 14px; padding-left: 22px; max-width: 66ch; color: var(--ink-soft); }
+.doc-body li { margin-bottom: 8px; }
+.doc-body strong { color: var(--ink); font-weight: 600; }
+.doc-body a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-2); }
+.doc-body a:hover { background: var(--paper-2); }
+
+.callout {
+  background: var(--paper-2);
+  border-left: 3px solid var(--accent);
+  padding: 16px 20px; margin: 0 0 16px;
+  border-radius: 0 6px 6px 0;
+}
+.callout p { margin: 0; color: var(--ink-soft); }
+.callout strong { color: var(--accent); }
+
+.tldr {
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 22px 24px;
+  margin-bottom: 8px;
+}
+.tldr .eyebrow { color: var(--flag); margin-bottom: 10px; }
+.tldr p { margin: 0; color: var(--ink); font-size: 18px; }
+
+@media (max-width: 760px) {
+  .doc-head, .doc-body { grid-template-columns: 1fr; gap: 8px; }
+  .doc-head { gap: 16px; }
+  .doc-body .num { padding-top: 0; }
+  .doc-body section { padding: 24px 0; }
+  .nav { gap: 16px; }
+  .nav a.hide-sm { display: none; }
+  body { font-size: 18px; }
+}
