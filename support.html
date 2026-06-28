@@ -3,117 +3,172 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Support — ScholarVera</title>
 <meta name="description" content="Get help with ScholarVera's WriteSight add-in and reference verification tool. Contact, common questions, and how to reach us.">
+<title>Support — ScholarVera</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  .contact-card {
-    background: #fff; border: 1px solid var(--rule); border-radius: 10px;
-    padding: 26px 28px; margin-bottom: 8px;
+  :root{
+    --ink:#1c2321; --ink-soft:#46524e; --ink-faint:#6f7a76;
+    --paper:#faf8f4; --paper-2:#f3efe7; --card:#ffffff;
+    --teal:#2f5d50; --teal-deep:#234a40; --gold:#b08828; --gold-soft:#f4ecd9;
+    --line:#e4ded2; --line-soft:#eee9df;
+    --maxw:760px;
   }
-  .contact-card .email {
-    font-family: "IBM Plex Mono", monospace; font-size: 21px; color: var(--accent);
-    text-decoration: none; border-bottom: 1px solid var(--accent-2);
-  }
-  .contact-card .email:hover { background: var(--paper-2); }
-  .qa h3 { color: var(--ink); }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:"Inter",-apple-system,system-ui,sans-serif; font-size:17px; line-height:1.65; -webkit-font-smoothing:antialiased}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px}
+  header.site{border-bottom:1px solid var(--line); background:rgba(250,248,244,.85); backdrop-filter:blur(8px); position:sticky; top:0; z-index:10}
+  .nav{display:flex; align-items:center; justify-content:space-between; height:62px}
+  .brand{display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--ink)}
+  .brand .mark{width:30px; height:30px; border-radius:7px; background:var(--teal); color:#fff; display:grid; place-items:center; font-family:"Fraunces",serif; font-weight:600; font-size:16px; letter-spacing:.5px}
+  .brand .name{font-family:"Fraunces",serif; font-weight:600; font-size:19px; letter-spacing:.2px}
+  .nav-links{display:flex; gap:22px}
+  .nav-links a{text-decoration:none; color:var(--ink-soft); font-size:14px; font-weight:500}
+  .nav-links a:hover,.nav-links a[aria-current]{color:var(--teal)}
+  .doc-hero{padding:64px 0 38px; border-bottom:1px solid var(--line)}
+  .eyebrow{display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--teal); margin-bottom:18px}
+  .eyebrow::before{content:""; width:22px; height:1.5px; background:var(--gold)}
+  h1{font-family:"Fraunces",serif; font-weight:500; font-size:clamp(34px,6vw,50px); line-height:1.06; letter-spacing:-.01em; margin:0 0 18px}
+  .lead{font-size:18px; color:var(--ink-soft); max-width:54ch; margin:0}
+  /* contact card */
+  .contact{margin:40px 0 8px; background:var(--teal); color:#fff; border-radius:14px; padding:28px 30px; box-shadow:0 14px 40px -24px rgba(35,74,64,.6)}
+  .contact .label{font-size:12px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:#bcd9c9; margin-bottom:8px}
+  .contact h2{font-family:"Fraunces",serif; font-weight:500; font-size:24px; margin:0 0 6px; color:#fff}
+  .contact p{margin:0 0 16px; color:#d6e6df}
+  .contact a.btn{display:inline-block; background:#fff; color:var(--teal-deep); text-decoration:none; font-weight:600; font-size:15px; padding:11px 20px; border-radius:8px}
+  .contact a.btn:hover{background:var(--gold-soft)}
+  .contact .resp{margin-top:14px; font-size:13px; color:#bcd9c9}
+  main{padding:8px 0 40px}
+  section.s{padding:38px 0 2px; border-bottom:1px solid var(--line-soft)}
+  section.s:last-of-type{border-bottom:none}
+  .s-num{font-family:"Fraunces",serif; font-size:13px; color:var(--gold); font-weight:600; letter-spacing:.1em; display:block; margin-bottom:6px}
+  h2.sec{font-family:"Fraunces",serif; font-weight:600; font-size:25px; line-height:1.2; letter-spacing:-.01em; margin:0 0 6px}
+  .qa{margin-top:18px}
+  .qa h3{font-size:16px; font-weight:600; margin:0 0 4px; color:var(--ink)}
+  .qa p{margin:0 0 16px; color:var(--ink-soft)}
+  p{margin:0 0 14px; color:var(--ink-soft)}
+  main p strong{color:var(--ink); font-weight:600}
+  a{color:var(--teal); text-decoration:underline; text-underline-offset:2px; text-decoration-thickness:1px}
+  a:hover{color:var(--teal-deep)}
+  footer.site{border-top:1px solid var(--line); padding:34px 0 48px; margin-top:20px; color:var(--ink-faint); font-size:14px}
+  .foot-row{display:flex; flex-wrap:wrap; gap:14px 22px; align-items:center; justify-content:space-between}
+  .foot-links{display:flex; gap:18px; flex-wrap:wrap}
+  .foot-links a{color:var(--ink-soft); text-decoration:none; font-weight:500}
+  .foot-links a:hover{color:var(--teal)}
+  .foot-note{margin-top:16px; font-size:12.5px; color:var(--ink-faint); max-width:60ch}
+  :focus-visible{outline:2px solid var(--teal); outline-offset:3px; border-radius:3px}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  @media (max-width:560px){.nav-links{gap:16px}.doc-hero{padding:44px 0 30px}}
 </style>
 </head>
 <body>
-
-<header class="topbar">
-  <div class="wrap">
-    <a class="brand" href="/"><span class="mark">[sv]</span> ScholarVera</a>
-    <nav class="nav">
-      <a href="/support">Support</a>
-      <a href="/privacy">Privacy</a>
-      <a href="/eula" class="hide-sm">Terms</a>
+<header class="site">
+  <div class="wrap nav">
+    <a class="brand" href="https://www.scholarvera.com/"><span class="mark">sv</span><span class="name">ScholarVera</span></a>
+    <nav class="nav-links">
+      <a href="https://www.scholarvera.com/support" aria-current="page">Support</a>
+      <a href="https://www.scholarvera.com/privacy">Privacy</a>
+      <a href="https://www.scholarvera.com/eula">Terms</a>
     </nav>
   </div>
 </header>
 
-<main class="wrap doc">
-  <div class="doc-head">
-    <div class="meta">
-      Support<br>
-      ScholarVera LLC<br>
-      <br>
-      Response within<br>
-      2 business days
-    </div>
-    <div>
-      <h1>Support</h1>
-      <p class="lede">Help with WriteSight and the reference verification tool — and a direct line to a real person.</p>
-    </div>
+<div class="doc-hero">
+  <div class="wrap">
+    <span class="eyebrow">Support</span>
+    <h1>Help, and a direct line to a real person.</h1>
+    <p class="lead">Answers for WriteSight and the reference verification tool — and an easy way to reach us when you need more.</p>
   </div>
+</div>
 
-  <div class="doc-body">
-    <div class="num">→</div>
-    <section>
-      <div class="contact-card">
-        <p class="eyebrow" style="color:var(--flag)">Get in touch</p>
-        <p style="margin:0 0 8px;color:var(--ink-soft)">The fastest way to reach us is email. Tell us which tool you're using and what's happening, and we'll help.</p>
-        <a class="email" href="mailto:chris@scholarvera.com">chris@scholarvera.com</a>
-      </div>
-    </section>
+<div class="wrap">
+  <div class="contact">
+    <div class="label">Get in touch</div>
+    <h2>Email is the fastest way to reach us.</h2>
+    <p>Tell us which tool you're using and what's happening, and we'll help.</p>
+    <a class="btn" href="mailto:chris@scholarvera.com">Email support</a>
+    <div class="resp">Typical response within 2 business days.</div>
+  </div>
+</div>
 
-    <div class="num">01</div>
-    <section class="qa">
-      <h2>WriteSight</h2>
+<main class="wrap">
+  <section class="s">
+    <span class="s-num">01</span>
+    <h2 class="sec">WriteSight</h2>
+    <div class="qa">
       <h3>How do I install it?</h3>
-      <p>WriteSight is a Microsoft Word add-in. During the current pilot phase, it's installed manually using a manifest file provided to participants. If you're part of a pilot and need the installation steps, email us and we'll send the current instructions for your platform (Windows or Mac).</p>
+      <p>WriteSight is a Microsoft Word add-in. Once it's available in Microsoft AppSource, you'll add it from within Word (Insert &rarr; Get Add-ins) or from its AppSource listing, and it appears in your task pane. If you're part of an early pilot before the public listing, we'll send you the current setup steps for your platform — just email us.</p>
+    </div>
+    <div class="qa">
+      <h3>How do I sign in?</h3>
+      <p>WriteSight uses a ScholarVera account. Open the add-in and sign in with your email and password; if you don't have access yet, your instructor or administrator can grant it. The add-in then opens in the right mode for your role — writing or review.</p>
+    </div>
+    <div class="qa">
       <h3>Where is my writing data stored?</h3>
-      <p>Inside your own document. WriteSight's provenance record is written into the .docx file itself and is not sent to ScholarVera. See the <a href="/privacy">Privacy Policy</a> for details.</p>
+      <p>Inside your own document. WriteSight's provenance record is written into the .docx file itself and is not sent to ScholarVera. See the <a href="https://www.scholarvera.com/privacy">Privacy Policy</a> for details, including what we do keep for your account.</p>
+    </div>
+    <div class="qa">
       <h3>Does it work on both Windows and Mac?</h3>
       <p>Yes. WriteSight runs in Word on both Windows and Mac.</p>
+    </div>
+    <div class="qa">
       <h3>The add-in isn't loading.</h3>
-      <p>First, confirm Word is fully updated and that you opened a document (the task pane needs an open document). If it still won't load, email us with your operating system and Word version and we'll troubleshoot with you.</p>
-    </section>
+      <p>First, confirm Word is fully updated and that you have a document open (the task pane needs an open document). If sign-in fails, double-check your email and password and that your access has been granted. If it still won't load, email us with your operating system and Word version and we'll troubleshoot with you.</p>
+    </div>
+  </section>
 
-    <div class="num">02</div>
-    <section class="qa">
-      <h2>Reference verification tool</h2>
+  <section class="s">
+    <span class="s-num">02</span>
+    <h2 class="sec">Reference verification tool</h2>
+    <div class="qa">
       <h3>How do I use it?</h3>
       <p>Open the tool, paste your list of references, and run the check. Each citation is verified against scholarly sources, and results are grouped so you can see which references resolve cleanly and which warrant a closer look.</p>
+    </div>
+    <div class="qa">
       <h3>A real source got flagged for manual review. Why?</h3>
       <p>The tool is deliberately conservative: it would rather ask you to confirm a real source by hand than risk falsely confirming a fabricated one. Some legitimate works — particularly books with very generic catalog entries — land in "verify manually" for this reason. That's the safety bar working as intended, not an error.</p>
+    </div>
+    <div class="qa">
       <h3>Is my reference list stored?</h3>
-      <p>No. Your references are processed to produce your results and aren't retained afterward. See the <a href="/privacy">Privacy Policy</a>.</p>
+      <p>No. Your references are processed to produce your results and aren't retained afterward. See the <a href="https://www.scholarvera.com/privacy">Privacy Policy</a>.</p>
+    </div>
+    <div class="qa">
       <h3>The page seemed to hang on a long list.</h3>
       <p>Very long reference lists are processed in batches so your browser doesn't time out. Large lists may take a little longer to finish; if something seems genuinely stuck, refresh and try again, or email us.</p>
-    </section>
+    </div>
+  </section>
 
-    <div class="num">03</div>
-    <section class="qa">
-      <h2>For institutions</h2>
-      <p>If you're evaluating ScholarVera's tools for a course, program, or institution — including questions about deployment, data handling, or how the tools fit competency-based assessment — we'd be glad to talk. Email us and describe your context, and we'll follow up.</p>
-    </section>
+  <section class="s">
+    <span class="s-num">03</span>
+    <h2 class="sec">For institutions</h2>
+    <p>If you're evaluating ScholarVera's tools for a course, program, or institution — including questions about deployment, account provisioning, data handling, or how the tools fit competency-based assessment — we'd be glad to talk. Email us and describe your context, and we'll follow up.</p>
+  </section>
 
-    <div class="num">04</div>
-    <section class="qa">
-      <h2>Reporting a problem</h2>
-      <p>Found a bug, a citation the checker got wrong, or anything that doesn't look right? Send it to <a href="mailto:chris@scholarvera.com">chris@scholarvera.com</a>. Concrete examples help us a great deal — the more specific, the faster we can fix it.</p>
-    </section>
-  </div>
+  <section class="s">
+    <span class="s-num">04</span>
+    <h2 class="sec">Reporting a problem</h2>
+    <p>Found a bug, a citation the checker got wrong, or anything that doesn't look right? Send it to <a href="mailto:chris@scholarvera.com">chris@scholarvera.com</a>. Concrete examples help us a great deal — the more specific, the faster we can fix it.</p>
+  </section>
 </main>
 
-<footer class="site-foot">
+<footer class="site">
   <div class="wrap">
-    <div class="legal">
-      <strong style="color:var(--ink-soft)">ScholarVera LLC</strong><br>
-      Support for ScholarVera's academic integrity tools.
+    <div class="foot-row">
+      <a class="brand" href="https://www.scholarvera.com/" style="color:var(--ink-soft)">
+        <span class="mark" style="width:26px;height:26px;font-size:14px">sv</span>
+        <span class="name" style="font-size:17px">ScholarVera</span>
+      </a>
+      <div class="foot-links">
+        <a href="https://www.scholarvera.com/">Home</a>
+        <a href="https://www.scholarvera.com/privacy">Privacy</a>
+        <a href="https://www.scholarvera.com/eula">Terms (EULA)</a>
+      </div>
     </div>
-    <div>
-      <a href="/">Home</a> &nbsp;·&nbsp;
-      <a href="/privacy">Privacy</a> &nbsp;·&nbsp;
-      <a href="/eula">Terms (EULA)</a><br>
-      <span style="color:var(--ink-faint)">chris@scholarvera.com</span>
-    </div>
+    <p class="foot-note">ScholarVera LLC. Support for ScholarVera's academic integrity tools.</p>
   </div>
 </footer>
-
 </body>
 </html>
