@@ -3,167 +3,277 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Privacy Policy — ScholarVera</title>
 <meta name="description" content="How ScholarVera's tools handle data. The short version: our tools are designed to avoid collecting and storing student work.">
+<title>Privacy Policy — ScholarVera</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c2321; --ink-soft:#46524e; --ink-faint:#6f7a76;
+    --paper:#faf8f4; --paper-2:#f3efe7; --card:#ffffff;
+    --teal:#2f5d50; --teal-deep:#234a40; --gold:#b08828; --gold-soft:#f4ecd9;
+    --line:#e4ded2; --line-soft:#eee9df;
+    --maxw:760px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Inter",-apple-system,system-ui,sans-serif;
+    font-size:17px; line-height:1.65; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px}
+
+  /* header */
+  header.site{
+    border-bottom:1px solid var(--line);
+    background:rgba(250,248,244,.85); backdrop-filter:blur(8px);
+    position:sticky; top:0; z-index:10;
+  }
+  .nav{display:flex; align-items:center; justify-content:space-between; height:62px}
+  .brand{display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--ink)}
+  .brand .mark{
+    width:30px; height:30px; border-radius:7px; background:var(--teal);
+    color:#fff; display:grid; place-items:center; font-family:"Fraunces",serif;
+    font-weight:600; font-size:16px; letter-spacing:.5px;
+  }
+  .brand .name{font-family:"Fraunces",serif; font-weight:600; font-size:19px; letter-spacing:.2px}
+  .nav-links{display:flex; gap:22px}
+  .nav-links a{text-decoration:none; color:var(--ink-soft); font-size:14px; font-weight:500}
+  .nav-links a:hover,.nav-links a[aria-current]{color:var(--teal)}
+
+  /* hero */
+  .doc-hero{padding:64px 0 38px; border-bottom:1px solid var(--line)}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:600;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--teal);
+    margin-bottom:18px;
+  }
+  .eyebrow::before{content:""; width:22px; height:1.5px; background:var(--gold)}
+  h1{
+    font-family:"Fraunces",serif; font-weight:500; font-size:clamp(34px,6vw,50px);
+    line-height:1.06; letter-spacing:-.01em; margin:0 0 18px;
+  }
+  .meta{display:flex; flex-wrap:wrap; gap:6px 20px; color:var(--ink-faint); font-size:14px}
+  .meta b{color:var(--ink-soft); font-weight:600}
+
+  /* the short version callout — the signature element */
+  .tldr{
+    margin:40px 0 8px; background:var(--card); border:1px solid var(--line);
+    border-left:3px solid var(--teal); border-radius:12px; padding:24px 26px;
+    box-shadow:0 1px 0 rgba(28,35,33,.03), 0 10px 30px -22px rgba(35,74,64,.25);
+  }
+  .tldr .label{
+    font-size:12px; font-weight:600; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--gold); margin-bottom:8px;
+  }
+  .tldr p{margin:0; font-size:17px; color:var(--ink-soft)}
+  .tldr strong{color:var(--ink); font-weight:600}
+
+  /* sections */
+  main{padding:8px 0 40px}
+  section.s{padding:34px 0 2px; border-bottom:1px solid var(--line-soft)}
+  section.s:last-of-type{border-bottom:none}
+  .s-num{
+    font-family:"Fraunces",serif; font-size:13px; color:var(--gold); font-weight:600;
+    letter-spacing:.1em; display:block; margin-bottom:6px;
+  }
+  h2{
+    font-family:"Fraunces",serif; font-weight:600; font-size:25px; line-height:1.2;
+    letter-spacing:-.01em; margin:0 0 14px;
+  }
+  h3{font-size:16px; font-weight:600; margin:22px 0 6px; color:var(--ink)}
+  p{margin:0 0 14px; color:var(--ink-soft)}
+  main p strong, main li strong{color:var(--ink); font-weight:600}
+  ul{margin:0 0 14px; padding-left:20px; color:var(--ink-soft)}
+  li{margin:0 0 7px}
+  a{color:var(--teal); text-decoration:underline; text-underline-offset:2px; text-decoration-thickness:1px}
+  a:hover{color:var(--teal-deep)}
+
+  .callout{
+    background:var(--gold-soft); border:1px solid #e7d9b6; border-radius:10px;
+    padding:16px 18px; margin:16px 0; font-size:15px; color:#6b551f;
+  }
+  .callout strong{color:#5a4715}
+
+  /* footer */
+  footer.site{border-top:1px solid var(--line); padding:34px 0 48px; margin-top:20px; color:var(--ink-faint); font-size:14px}
+  .foot-row{display:flex; flex-wrap:wrap; gap:14px 22px; align-items:center; justify-content:space-between}
+  .foot-links{display:flex; gap:18px; flex-wrap:wrap}
+  .foot-links a{color:var(--ink-soft); text-decoration:none; font-weight:500}
+  .foot-links a:hover{color:var(--teal)}
+  .foot-note{margin-top:16px; font-size:12.5px; color:var(--ink-faint); max-width:60ch}
+
+  :focus-visible{outline:2px solid var(--teal); outline-offset:3px; border-radius:3px}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  @media (max-width:560px){
+    .nav-links{gap:16px}
+    .doc-hero{padding:44px 0 30px}
+  }
+</style>
 </head>
 <body>
-
-<header class="topbar">
-  <div class="wrap">
-    <a class="brand" href="/"><span class="mark">[sv]</span> ScholarVera</a>
-    <nav class="nav">
-      <a href="/support">Support</a>
-      <a href="/privacy">Privacy</a>
-      <a href="/eula" class="hide-sm">Terms</a>
+<header class="site">
+  <div class="wrap nav">
+    <a class="brand" href="https://www.scholarvera.com/">
+      <span class="mark">sv</span><span class="name">ScholarVera</span>
+    </a>
+    <nav class="nav-links">
+      <a href="https://www.scholarvera.com/support">Support</a>
+      <a href="https://www.scholarvera.com/privacy" aria-current="page">Privacy</a>
+      <a href="https://www.scholarvera.com/eula">Terms</a>
     </nav>
   </div>
 </header>
 
-<main class="wrap doc">
-  <div class="doc-head">
+<div class="doc-hero">
+  <div class="wrap">
+    <span class="eyebrow">Privacy Policy &middot; Version 1.1</span>
+    <h1>What we handle,<br>and what we don't.</h1>
     <div class="meta">
-      Privacy Policy<br>
-      Version 1.0<br>
-      Effective 25 June 2026<br>
-      <br>
-      ScholarVera LLC<br>
-      Oklahoma, USA
-    </div>
-    <div>
-      <h1>Privacy Policy</h1>
-      <p class="lede">This policy explains what data ScholarVera's tools handle, and — just as importantly — what they deliberately don't.</p>
+      <span><b>Effective</b> 28 June 2026</span>
+      <span><b>ScholarVera LLC</b></span>
+      <span>Oklahoma, USA</span>
     </div>
   </div>
+</div>
 
-  <div class="doc-body">
-    <div class="num">00</div>
-    <section>
-      <div class="tldr">
-        <p class="eyebrow">The short version</p>
-        <p>ScholarVera's tools are built to avoid collecting student work. WriteSight stores its record <strong>inside your own document</strong>, not on our servers. The reference checker processes your citation list to verify it and keeps no copy. We are not in the business of holding your writing.</p>
-      </div>
-    </section>
-
-    <div class="num">01</div>
-    <section>
-      <h2>Who we are</h2>
-      <p>ScholarVera LLC ("ScholarVera," "we," "us") is an academic-integrity software company based in Oklahoma, United States. We make two tools: <strong>WriteSight</strong>, a Microsoft Word add-in that records how a document was written, and a web-based <strong>reference verification tool</strong> that checks whether citations resolve to real sources.</p>
-      <p>This policy covers both. If a specific behavior differs between the two tools, we say so.</p>
-    </section>
-
-    <div class="num">02</div>
-    <section>
-      <h2>Our core commitment</h2>
-      <div class="callout">
-        <p><strong>We design our tools to minimize the student data we touch.</strong> Wherever a feature can work without us collecting or storing your writing, that is how we build it.</p>
-      </div>
-      <p>This isn't only a privacy stance — it's how the tools are engineered. It's the reason WriteSight keeps its record inside your document rather than on a server, and the reason the reference checker doesn't ask for, or retain, the body of your work.</p>
-    </section>
-
-    <div class="num">03</div>
-    <section>
-      <h2>WriteSight (Word add-in)</h2>
-      <h3>What it records</h3>
-      <p>WriteSight observes how a document is constructed while you write — patterns of typing, pasting, and revision over time — and assembles that into a "provenance record." This record is meant to give faculty context for a conversation about the writing process.</p>
-      <h3>Where that record lives</h3>
-      <p>The provenance record is stored <strong>inside the .docx file itself</strong>, in a dedicated part of the document. It travels with the file. When you submit your document, the record goes wherever the document goes — to your learning management system, to your instructor — exactly like the rest of the file's contents.</p>
-      <div class="callout">
-        <p><strong>ScholarVera does not receive this record.</strong> Because the data lives in your document and not on our servers, we do not collect it, store it, or have access to it. We could not hand it over or sell it if we wanted to — we never have it.</p>
-      </div>
-      <h3>Tamper-evidence</h3>
-      <p>The record includes integrity-protection so that later alteration can be detected. This protection operates entirely within your document; it does not involve sending anything to us.</p>
-      <h3>Who can see the record</h3>
-      <p>Anyone you give the document to, using compatible software, can view the provenance record — most commonly an instructor reviewing submitted work. ScholarVera is not a party to that exchange.</p>
-    </section>
-
-    <div class="num">04</div>
-    <section>
-      <h2>Reference verification tool (web)</h2>
-      <h3>What you provide</h3>
-      <p>To check your citations, you paste a list of references into the tool. The tool then queries scholarly catalogs and databases to determine whether each reference corresponds to a real, locatable work.</p>
-      <h3>What we do with it</h3>
-      <p>Your references are processed to produce your results and are <strong>not retained after your request is served</strong>. We do not build a stored profile of your reference lists, and we do not ask you to paste the body of your document — only the reference list you want checked.</p>
-      <h3>Third-party scholarly sources</h3>
-      <p>Verifying a citation requires querying external scholarly services (for example, public bibliographic catalogs). The reference text necessary to perform a lookup is sent to those services for that purpose. We use these sources to confirm whether a work exists; we don't share your data with them for any other reason.</p>
-    </section>
-
-    <div class="num">05</div>
-    <section>
-      <h2>Information we do collect</h2>
-      <p>Operating any software involves some limited data. To be straightforward about it:</p>
-      <ul>
-        <li><strong>Basic technical and service data.</strong> Like most websites and hosted services, our infrastructure may process standard technical information (such as request logs) needed to run, secure, and troubleshoot the service.</li>
-        <li><strong>What you send us directly.</strong> If you email us for support, we receive what you write to us and reply to it.</li>
-      </ul>
-      <p>We do not use this information to build advertising profiles, and we do not sell it.</p>
-    </section>
-
-    <div class="num">06</div>
-    <section>
-      <h2>What we don't do</h2>
-      <ul>
-        <li>We don't sell personal data.</li>
-        <li>We don't serve third-party advertising or use your data to target ads.</li>
-        <li>We don't store the body of your documents on our servers.</li>
-        <li>We don't render an "AI-detection" verdict or score. Our tools surface observations, not conclusions.</li>
-      </ul>
-    </section>
-
-    <div class="num">07</div>
-    <section>
-      <h2>Student records and FERPA</h2>
-      <p>ScholarVera's tools are used in educational settings, and we've designed them with that context in mind. Because WriteSight's provenance record stays inside the student's own document and the reference checker retains no student work, the tools are built to keep education records under the control of the student and the institution rather than flowing to us.</p>
-      <p>Where an institution adopts our tools, the institution remains responsible for its own obligations under FERPA and applicable law. We're glad to work with institutions on the data-handling specifics of a deployment.</p>
-    </section>
-
-    <div class="num">08</div>
-    <section>
-      <h2>Data security</h2>
-      <p>We use reasonable technical measures appropriate to the limited data we handle, including encrypted connections (HTTPS) for our web services. No system is perfectly secure, but minimizing the data we hold in the first place is itself a central part of our security posture.</p>
-    </section>
-
-    <div class="num">09</div>
-    <section>
-      <h2>Children's privacy</h2>
-      <p>Our tools are intended for use in higher education and by adults. They are not directed to children under 13, and we do not knowingly collect personal information from them.</p>
-    </section>
-
-    <div class="num">10</div>
-    <section>
-      <h2>Changes to this policy</h2>
-      <div class="callout">
-        <p><strong>This policy describes our tools as they exist today.</strong> As we add features — such as user accounts — we will update this policy to describe them accurately and revise the version and effective date above. We won't quietly expand what we collect; new data practices will be reflected here.</p>
-      </div>
-      <p>When changes are material, we'll make a reasonable effort to make them noticeable rather than burying them.</p>
-    </section>
-
-    <div class="num">11</div>
-    <section>
-      <h2>Contact us</h2>
-      <p>Questions about this policy or how our tools handle data? Email <a href="mailto:chris@scholarvera.com">chris@scholarvera.com</a> and we'll respond.</p>
-    </section>
+<div class="wrap">
+  <div class="tldr">
+    <div class="label">The short version</div>
+    <p>ScholarVera's tools are built to avoid collecting student work. WriteSight stores its record <strong>inside your own document</strong>, not on our servers. The reference checker verifies your citation list and keeps no copy. We do collect the basics needed to run accounts — your email and sign-in — and we're specific below about exactly what that means.</p>
   </div>
+</div>
+
+<main class="wrap">
+  <section class="s">
+    <span class="s-num">01</span>
+    <h2>Who we are</h2>
+    <p>ScholarVera LLC ("ScholarVera," "we," "us") is an academic-integrity software company based in Oklahoma, United States. We make two tools: <strong>WriteSight</strong>, a Microsoft Word add-in that records how a document was written, and a web-based <strong>reference verification tool</strong> that checks whether citations resolve to real sources.</p>
+    <p>This policy covers both, along with the accounts that let you sign in to them. Where a behavior differs between tools, we say so.</p>
+  </section>
+
+  <section class="s">
+    <span class="s-num">02</span>
+    <h2>Our core commitment</h2>
+    <p><strong>We design our tools to minimize the student data we touch.</strong> Wherever a feature can work without us collecting or storing your writing, that is how we build it.</p>
+    <p>This isn't only a privacy stance — it's how the tools are engineered. It's the reason WriteSight keeps its record inside your document rather than on a server, and the reason the reference checker doesn't ask for, or retain, the body of your work. The one place we do hold data is the account that signs you in, covered in its own section below.</p>
+  </section>
+
+  <section class="s">
+    <span class="s-num">03</span>
+    <h2>WriteSight (Word add-in)</h2>
+    <h3>What it records</h3>
+    <p>WriteSight observes how a document is constructed while you write — patterns of typing, pasting, and revision over time — and assembles that into a "provenance record." This record is meant to give faculty context for a conversation about the writing process. It does <strong>not</strong> capture the meaning or content of what you write as something we receive; it describes <em>how</em> the document came together.</p>
+    <h3>Where that record lives</h3>
+    <p>The provenance record is stored <strong>inside the .docx file itself</strong>, in a dedicated part of the document. It travels with the file. When you submit your document, the record goes wherever the document goes — to your learning management system, to your instructor — exactly like the rest of the file's contents.</p>
+    <p><strong>ScholarVera does not receive this record.</strong> Because the data lives in your document and not on our servers, we do not collect it, store it, or have access to it. We could not hand it over or sell it if we wanted to — we never have it.</p>
+    <h3>Tamper-evidence</h3>
+    <p>The record includes integrity-protection so that later alteration can be detected. This protection operates within your document and your signed-in session; it does not involve sending your writing to us.</p>
+    <h3>Who can see the record</h3>
+    <p>Anyone you give the document to, using compatible software, can view the provenance record — most commonly an instructor reviewing submitted work. ScholarVera is not a party to that exchange.</p>
+  </section>
+
+  <section class="s">
+    <span class="s-num">04</span>
+    <h2>Accounts and authentication</h2>
+    <p>Using WriteSight requires signing in, so the tool can confirm you're an authorized user and run in the right mode (student or faculty). This is the one place we hold data about you, so we're specific about it.</p>
+    <h3>What we collect for your account</h3>
+    <ul>
+      <li><strong>Your email address and a password</strong>, which you provide to create and access your account.</li>
+      <li><strong>Your entitlement</strong> — the record that your account has been granted access, and in which role. This is what tells the add-in whether to open in writing mode or review mode.</li>
+      <li><strong>Basic sign-in activity</strong> needed to operate the service securely, such as when a token was issued.</li>
+    </ul>
+    <h3>How sign-in works</h3>
+    <p>Authentication is handled through <strong>Supabase</strong>, a third-party platform we use to manage accounts and access securely on our behalf. Your email and password are processed by Supabase to verify you. When you sign in, the add-in receives a short-lived access token that identifies your account and role; that token is what lets the tool run. We do not see your password in readable form.</p>
+    <h3>What we do <em>not</em> tie to your account</h3>
+    <p>Your account confirms <em>who</em> you are and <em>what access</em> you have. It is not a store of your writing. WriteSight's provenance record still lives inside your document, not against your account on our servers. Signing in does not send us the text of your work.</p>
+    <div class="callout"><strong>Plain version:</strong> we keep your email, password, and what you're allowed to use — the minimum to run a login. We do not keep your documents or your writing.</div>
+  </section>
+
+  <section class="s">
+    <span class="s-num">05</span>
+    <h2>Reference verification tool (web)</h2>
+    <h3>What you provide</h3>
+    <p>To check your citations, you paste a list of references into the tool. The tool then queries scholarly catalogs and databases to determine whether each reference corresponds to a real, locatable work.</p>
+    <h3>What we do with it</h3>
+    <p>Your references are processed to produce your results and are <strong>not retained after your request is served</strong>. We do not build a stored profile of your reference lists, and we do not ask you to paste the body of your document — only the reference list you want checked.</p>
+    <h3>Third-party scholarly sources</h3>
+    <p>Verifying a citation requires querying external scholarly services (for example, public bibliographic catalogs). The reference text necessary to perform a lookup is sent to those services for that purpose. We use these sources to confirm whether a work exists; we don't share your data with them for any other reason.</p>
+  </section>
+
+  <section class="s">
+    <span class="s-num">06</span>
+    <h2>Information we collect to run the service</h2>
+    <p>Operating any software involves some limited data. To be straightforward about it:</p>
+    <ul>
+      <li><strong>Account data</strong>, as described in the accounts section above.</li>
+      <li><strong>Basic technical and service data.</strong> Like most hosted services, our infrastructure may process standard technical information (such as request logs) needed to run, secure, and troubleshoot the service.</li>
+      <li><strong>What you send us directly.</strong> If you email us for support, we receive what you write to us and reply to it.</li>
+    </ul>
+    <p>We do not use this information to build advertising profiles, and we do not sell it.</p>
+  </section>
+
+  <section class="s">
+    <span class="s-num">07</span>
+    <h2>What we don't do</h2>
+    <ul>
+      <li>We don't sell personal data.</li>
+      <li>We don't serve third-party advertising or use your data to target ads.</li>
+      <li>We don't store the body of your documents on our servers.</li>
+      <li>We don't render an "AI-detection" verdict or score. Our tools surface observations, not conclusions.</li>
+    </ul>
+  </section>
+
+  <section class="s">
+    <span class="s-num">08</span>
+    <h2>Student records and FERPA</h2>
+    <p>ScholarVera's tools are used in educational settings, and we've designed them with that context in mind. Because WriteSight's provenance record stays inside the student's own document and the reference checker retains no student work, the tools are built to keep education records under the control of the student and the institution rather than flowing to us. The account data we do hold is limited to identity and access — not student coursework.</p>
+    <p>Where an institution adopts our tools, the institution remains responsible for its own obligations under FERPA and applicable law. We're glad to work with institutions on the data-handling specifics of a deployment.</p>
+  </section>
+
+  <section class="s">
+    <span class="s-num">09</span>
+    <h2>Data security</h2>
+    <p>We use reasonable technical measures appropriate to the data we handle, including encrypted connections (HTTPS) for our web services and add-in, and a managed authentication platform for account security. No system is perfectly secure, but minimizing the data we hold in the first place is itself a central part of our security posture.</p>
+  </section>
+
+  <section class="s">
+    <span class="s-num">10</span>
+    <h2>Children's privacy</h2>
+    <p>Our tools are intended for use in higher education and by adults. They are not directed to children under 13, and we do not knowingly collect personal information from them. Where the tools are used with students who are minors, that use is arranged through their institution.</p>
+  </section>
+
+  <section class="s">
+    <span class="s-num">11</span>
+    <h2>Changes to this policy</h2>
+    <p>This policy describes our tools as they exist today, including accounts and sign-in. As we add features, we will update this policy to describe them accurately and revise the version and effective date above. We won't quietly expand what we collect; new data practices will be reflected here.</p>
+    <p>When changes are material, we'll make a reasonable effort to make them noticeable rather than burying them.</p>
+  </section>
+
+  <section class="s">
+    <span class="s-num">12</span>
+    <h2>Contact us</h2>
+    <p>Questions about this policy or how our tools handle data? Email <a href="mailto:chris@scholarvera.com">chris@scholarvera.com</a> and we'll respond.</p>
+  </section>
 </main>
 
-<footer class="site-foot">
+<footer class="site">
   <div class="wrap">
-    <div class="legal">
-      <strong style="color:var(--ink-soft)">ScholarVera LLC</strong><br>
-      This Privacy Policy is provided for transparency about our tools' data handling.
-      It is not legal advice and may be updated as our products evolve.
+    <div class="foot-row">
+      <a class="brand" href="https://www.scholarvera.com/" style="color:var(--ink-soft)">
+        <span class="mark" style="width:26px;height:26px;font-size:14px">sv</span>
+        <span class="name" style="font-size:17px">ScholarVera</span>
+      </a>
+      <div class="foot-links">
+        <a href="https://www.scholarvera.com/">Home</a>
+        <a href="https://www.scholarvera.com/support">Support</a>
+        <a href="https://www.scholarvera.com/eula">Terms (EULA)</a>
+      </div>
     </div>
-    <div>
-      <a href="/">Home</a> &nbsp;·&nbsp;
-      <a href="/support">Support</a> &nbsp;·&nbsp;
-      <a href="/eula">Terms (EULA)</a><br>
-      <span style="color:var(--ink-faint)">chris@scholarvera.com</span>
-    </div>
+    <p class="foot-note">ScholarVera LLC. This Privacy Policy is provided for transparency about our tools' data handling. It is not legal advice and may be updated as our products evolve.</p>
   </div>
 </footer>
-
 </body>
 </html>
