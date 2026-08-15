@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>InForm: APA 7 checked, sources verified. A Microsoft Word add-in by ScholarVera</title>
+<meta name="description" content="InForm is a Microsoft Word add-in that checks your APA 7 formatting, matches citations to your reference list, and checks whether your cited sources can be verified. It shows you exactly what to fix and never changes a word.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTQiIGZpbGw9IiMyZjVkNTAiLz48dGV4dCB4PSIzMiIgeT0iNDUiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhLCAnVGltZXMgTmV3IFJvbWFuJywgc2VyaWYiIGZvbnQtc2l6ZT0iMzMiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiNmZmZmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGxldHRlci1zcGFjaW5nPSIxIj5zdjwvdGV4dD48L3N2Zz4K">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="InForm: APA 7 checked, sources verified">
+<meta property="og:description" content="A Microsoft Word add-in that checks APA 7, matches your citations, and verifies the sources behind them. Shows you what to fix, never changes a word.">
+<meta property="og:url" content="https://www.scholarvera.com/inform">
+<meta name="theme-color" content="#2f5d50">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,400;9..144,0,500;9..144,0,600;9..144,1,400;9..144,1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c2321; --ink-soft:#46524e; --ink-faint:#6f7a76;
+    --paper:#faf8f4; --paper-2:#f3efe7; --card:#ffffff;
+    --teal:#2f5d50; --teal-deep:#234a40; --gold:#b08828; --gold-dk:#8a6a12; --gold-soft:#f4ecd9;
+    --line:#e4ded2; --line-soft:#eee9df; --ok:#2f7d5b;
+    --maxw:1060px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:"Inter",-apple-system,system-ui,sans-serif; font-size:17px; line-height:1.65; -webkit-font-smoothing:antialiased}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px}
+  a{color:inherit}
+  .skip{position:absolute; left:-999px; top:0; background:var(--teal); color:#fff; padding:10px 16px; border-radius:0 0 8px 0; z-index:100}
+  .skip:focus{left:0}
+
+  header.site{border-bottom:1px solid var(--line); background:rgba(250,248,244,.85); backdrop-filter:blur(8px); position:sticky; top:0; z-index:10}
+  .nav{display:flex; align-items:center; justify-content:space-between; height:64px}
+  .brand{display:flex; align-items:center; gap:11px; text-decoration:none; color:var(--ink)}
+  .brand .mark{width:32px; height:32px; border-radius:8px; background:var(--teal); color:#fff; display:grid; place-items:center; font-family:"Fraunces",serif; font-weight:600; font-size:17px; letter-spacing:.5px}
+  .brand .name{font-family:"Fraunces",serif; font-weight:600; font-size:20px; letter-spacing:.2px}
+  .nav-links{display:flex; gap:24px; align-items:center}
+  .nav-links a{text-decoration:none; color:var(--ink-soft); font-size:14.5px; font-weight:500}
+  .nav-links a:hover,.nav-links a[aria-current]{color:var(--teal)}
+  .nav-links a.cta{background:var(--teal); color:#fff; padding:8px 16px; border-radius:9px}
+  .nav-links a.cta:hover{background:var(--teal-deep); color:#fff}
+  @media (max-width:600px){ .nav-links{gap:14px; font-size:13.5px} .nav-links a.plain{display:none} }
+
+  section{scroll-margin-top:80px}
+  .kicker{font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:20px}
+  .status{display:inline-block; font-size:11.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; padding:5px 11px; border-radius:100px; margin-bottom:18px; background:var(--gold-soft); color:var(--gold-dk)}
+  .eyebrow{display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--teal); margin-bottom:16px}
+  .eyebrow::before{content:""; width:22px; height:1.5px; background:var(--gold)}
+
+  /* hero */
+  .hero{padding:74px 0 30px}
+  .hero .inner{display:grid; grid-template-columns:1.05fr 1fr; gap:48px; align-items:center}
+  .hero h1{font-family:"Fraunces",serif; font-weight:500; font-size:clamp(34px,5.2vw,54px); line-height:1.06; letter-spacing:-.015em; margin:0 0 20px}
+  .hero h1 em{font-style:italic; color:var(--teal); font-weight:500}
+  .hero .lead{font-size:18px; line-height:1.55; color:var(--ink-soft); max-width:56ch; margin:0 0 14px}
+  .hero .metaline{font-size:13px; font-weight:600; letter-spacing:.02em; color:var(--ink-faint); margin:0}
+  @media (max-width:860px){ .hero .inner{grid-template-columns:1fr; gap:34px} .hero{padding:52px 0 20px} }
+
+  /* beta / signup card */
+  .signup{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:22px 22px 24px; box-shadow:0 18px 40px -30px rgba(35,74,64,.5)}
+  .signup .st{font-family:"Fraunces",serif; font-weight:600; font-size:19px; margin:0 0 6px; letter-spacing:-.01em}
+  .signup .sd{font-size:14.5px; color:var(--ink-soft); margin:0 0 16px}
+  .signup .free{display:inline-block; background:#e7efec; color:var(--teal); font-weight:600; font-size:12.5px; padding:4px 11px; border-radius:100px; margin-bottom:14px}
+  .signup-form{display:flex; gap:9px; flex-wrap:wrap}
+  .signup-form input[type=email]{flex:1 1 200px; min-width:0; font:inherit; font-size:15px; padding:12px 14px; border:1.5px solid var(--line); border-radius:10px; background:#fff; color:var(--ink)}
+  .signup-form input[type=email]:focus{outline:none; border-color:var(--teal)}
+  .hp{position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden}
+  .btn{display:inline-block; text-decoration:none; text-align:center; font-family:inherit; font-weight:600; font-size:15px; padding:12px 22px; border-radius:10px; border:0; cursor:pointer; transition:transform .12s ease, background .12s ease}
+  .btn:active{transform:translateY(1px)}
+  .btn.primary{background:var(--teal); color:#fff}
+  .btn.primary:hover{background:var(--teal-deep)}
+  .btn.ghost{background:transparent; color:var(--teal); border:1.5px solid #cfd8d3}
+  .btn.ghost:hover{border-color:var(--teal); background:#fff}
+  .btn.block{display:block; width:100%}
+  .signup .msg{font-size:13.5px; margin:12px 2px 0; min-height:1.1em}
+  .signup .msg.ok{color:var(--ok)} .signup .msg.err{color:#b0402a}
+  .signup .fine{font-size:12px; color:var(--ink-faint); margin:12px 2px 0}
+
+  /* app-window mockup */
+  .shot{border:1px solid var(--line); border-radius:14px; overflow:hidden; background:#fff; box-shadow:0 30px 60px -34px rgba(35,74,64,.5), 0 4px 14px -8px rgba(35,74,64,.25)}
+  .shot-bar{display:flex; align-items:center; gap:7px; padding:9px 14px; background:#f0ece3; border-bottom:1px solid var(--line)}
+  .shot-bar .d{width:10px; height:10px; border-radius:50%; background:#d3ccbe}
+  .shot-title{margin-left:9px; font-size:12px; color:var(--ink-faint); font-weight:500}
+  .inform-shot{display:grid; grid-template-columns:1.3fr 1fr; min-height:280px}
+  .inform-shot .doc{padding:22px 20px; background:#fff}
+  .inform-shot .doc .h{height:11px; width:60%; border-radius:3px; background:#dfe4e0; margin:0 0 16px}
+  .inform-shot .doc .ln{height:8px; border-radius:3px; background:#eef0ec; margin:0 0 10px}
+  .inform-shot .doc .ln.s{width:88%} .inform-shot .doc .ln.x{width:74%}
+  .inform-shot .doc .cite{display:inline-block; background:var(--gold-soft); color:var(--gold-dk); border-bottom:2px solid #e4c877; border-radius:3px; padding:1px 5px; font-size:12px; font-weight:600}
+  .inform-shot .pane{background:#f6f8f6; border-left:1px solid var(--line); padding:16px 15px; display:flex; flex-direction:column; gap:13px}
+  .inform-shot .pane-head{display:flex; align-items:center; gap:8px; font-family:"Fraunces",serif; font-weight:600; font-size:15px; color:var(--teal)}
+  .inform-shot .pane-head .m{width:20px; height:20px; border-radius:6px; background:var(--teal); color:#fff; display:grid; place-items:center; font-size:11px; font-weight:700}
+  .card-f{background:#fff; border:1px solid var(--line); border-radius:10px; padding:12px 13px}
+  .card-f .chip{display:inline-block; font-size:10px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--gold-dk); background:var(--gold-soft); padding:2px 7px; border-radius:5px; margin-bottom:7px}
+  .card-f .ft{font-weight:600; font-size:13.5px; margin:0 0 5px; color:var(--ink)}
+  .card-f p{margin:0; font-size:12.5px; line-height:1.5; color:var(--ink-soft)}
+  .card-v{background:#fff; border:1px solid #d5e6dc; border-radius:10px; padding:12px 13px}
+  .card-v .vh{font-size:10px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:8px}
+  .card-v .vrow{display:flex; align-items:center; gap:8px; font-size:13px; font-weight:600; color:var(--ok); margin-bottom:6px}
+  .card-v .tick{width:18px; height:18px; border-radius:50%; background:var(--ok); color:#fff; display:grid; place-items:center; font-size:11px; flex:none}
+  .card-v .vcite{font-size:11.5px; line-height:1.45; color:var(--ink-soft)}
+
+  /* capabilities */
+  .caps{padding:64px 0 20px}
+  .caps h2{font-family:"Fraunces",serif; font-weight:500; font-size:clamp(26px,4vw,38px); line-height:1.12; letter-spacing:-.01em; margin:0 0 8px; max-width:20ch}
+  .caps .sub{color:var(--ink-soft); font-size:16.5px; max-width:60ch; margin:0 0 34px}
+  .capgrid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px}
+  .cap{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:24px 22px 26px}
+  .cap .cn{font-family:"Fraunces",serif; font-style:italic; font-size:14px; color:var(--gold); margin-bottom:10px}
+  .cap h3{font-family:"Fraunces",serif; font-weight:600; font-size:19px; margin:0 0 9px; letter-spacing:-.01em}
+  .cap p{font-size:14.5px; margin:0; color:var(--ink-soft); line-height:1.55}
+  @media (max-width:760px){ .capgrid{grid-template-columns:1fr} }
+
+  /* split band */
+  .band{padding:60px 0; border-top:1px solid var(--line); margin-top:40px; background:var(--paper-2); border-bottom:1px solid var(--line)}
+  .band .inner{display:grid; grid-template-columns:1fr 1fr; gap:44px; align-items:center}
+  .band h2{font-family:"Fraunces",serif; font-weight:500; font-size:clamp(25px,3.6vw,34px); line-height:1.14; letter-spacing:-.01em; margin:0 0 14px}
+  .band p{font-size:16px; color:var(--ink-soft); margin:0 0 14px}
+  .band p:last-child{margin-bottom:0}
+  @media (max-width:800px){ .band .inner{grid-template-columns:1fr; gap:22px} }
+
+  /* checks list */
+  .checks{padding:66px 0 24px}
+  .checks h2{font-family:"Fraunces",serif; font-weight:500; font-size:clamp(26px,4vw,36px); margin:0 0 6px; letter-spacing:-.01em}
+  .checks .sub{color:var(--ink-soft); font-size:16px; margin:0 0 32px; max-width:62ch}
+  .checkcols{display:grid; grid-template-columns:repeat(3,1fr); gap:22px}
+  .chk{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px 20px 24px}
+  .chk h3{font-size:13px; font-weight:600; letter-spacing:.05em; text-transform:uppercase; color:var(--teal); margin:0 0 14px}
+  .chk ul{list-style:none; margin:0; padding:0; display:grid; gap:10px}
+  .chk li{position:relative; padding-left:24px; font-size:14.5px; color:var(--ink); line-height:1.4}
+  .chk li::before{content:""; position:absolute; left:0; top:7px; width:8px; height:8px; border-radius:2.5px; background:var(--gold)}
+  @media (max-width:800px){ .checkcols{grid-template-columns:1fr} }
+
+  /* privacy strip */
+  .privacy{padding:60px 0 24px}
+  .privacy .box{background:linear-gradient(160deg,#eef3f0,#f7f4ee); border:1px solid var(--line); border-radius:18px; padding:36px 34px}
+  .privacy h2{font-family:"Fraunces",serif; font-weight:500; font-size:clamp(23px,3.4vw,31px); color:var(--teal); margin:0 0 12px; letter-spacing:-.01em}
+  .privacy p{font-size:16px; color:var(--ink-soft); margin:0; max-width:74ch}
+
+  /* faq */
+  .faq{padding:60px 0 20px}
+  .faq h2{font-family:"Fraunces",serif; font-weight:500; font-size:clamp(24px,3.6vw,32px); margin:0 0 24px; letter-spacing:-.01em}
+  .faq details{border-top:1px solid var(--line); padding:18px 2px}
+  .faq details:last-of-type{border-bottom:1px solid var(--line)}
+  .faq summary{font-weight:600; font-size:16.5px; cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:16px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+"; color:var(--gold); font-size:22px; font-weight:400; line-height:1}
+  .faq details[open] summary::after{content:"\2212"}
+  .faq details p{margin:12px 0 0; color:var(--ink-soft); font-size:15.5px; max-width:74ch}
+
+  /* final cta */
+  .finalcta{margin-top:56px; background:linear-gradient(160deg,var(--teal),var(--teal-deep)); color:#fff}
+  .finalcta .in{padding:64px 0 68px; text-align:center}
+  .finalcta h2{font-family:"Fraunces",serif; font-weight:500; font-size:clamp(25px,3.8vw,36px); line-height:1.18; margin:0 auto 12px; max-width:22ch; color:#fff; letter-spacing:-.01em}
+  .finalcta p{color:rgba(255,255,255,.84); font-size:16.5px; max-width:52ch; margin:0 auto 24px}
+  .finalcta .signup{max-width:440px; margin:0 auto; text-align:left; color:var(--ink)}
+
+  footer.site{border-top:1px solid var(--line); padding:44px 0 56px; color:var(--ink-faint); font-size:14px; background:var(--paper-2); margin-top:0}
+  .foot-row{display:flex; flex-wrap:wrap; gap:14px 22px; align-items:center; justify-content:space-between}
+  .foot-links{display:flex; gap:18px; flex-wrap:wrap}
+  .foot-links a{color:var(--ink-soft); text-decoration:none; font-weight:500}
+  .foot-links a:hover{color:var(--teal)}
+  .foot-note{margin-top:16px; font-size:12.5px; color:var(--ink-faint); max-width:74ch}
+
+  :focus-visible{outline:2px solid var(--teal); outline-offset:3px; border-radius:3px}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site">
+  <div class="wrap nav">
+    <a class="brand" href="/"><span class="mark" aria-hidden="true">sv</span><span class="name">ScholarVera</span></a>
+    <nav class="nav-links" aria-label="Primary">
+      <a class="plain" href="/inform" aria-current="page">InForm</a>
+      <a class="plain" href="/writesight">WriteSight</a>
+      <a class="plain" href="/support">Support</a>
+      <a class="cta" href="#get-updates">Join the Beta</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap inner">
+      <div class="copy">
+        <span class="eyebrow">InForm for Microsoft Word</span>
+        <h1>Get APA&nbsp;7 right, and <em>verify</em> the sources behind it.</h1>
+        <p class="lead">InForm is an add-in for Microsoft Word that checks your APA&nbsp;7 formatting, matches your citations to your reference list, and checks whether the works you cite can be verified against the scholarly record. It shows you exactly what to fix, and never changes a word of your writing.</p>
+        <p class="metaline">Microsoft Word add-in &nbsp;&middot;&nbsp; APA&nbsp;7 &nbsp;&middot;&nbsp; Privacy-first &nbsp;&middot;&nbsp; No auto-rewriting</p>
+      </div>
+
+      <!-- BETA SIGNUP  (WHEN LIVE ON APPSOURCE: swap the form for the AppSource button, see comment below) -->
+      <div class="signup" id="get-updates">
+        <span class="status">Coming soon</span>
+        <div class="st">Join the founding beta</div>
+        <p class="sd">InForm launches soon on Microsoft AppSource. Add your email and we will send your invitation the moment the beta opens.</p>
+        <span class="free">4 months free, a full semester</span>
+        <form class="signup-form" data-product="inform" novalidate>
+          <label class="hp" aria-hidden="true">Company<input type="text" name="company" tabindex="-1" autocomplete="off"></label>
+          <input type="email" name="email" required placeholder="you@university.edu" aria-label="Email address">
+          <button class="btn primary" type="submit">Join the Waitlist</button>
+        </form>
+        <p class="msg" role="status" aria-live="polite"></p>
+        <p class="fine">One email at launch. No cookies, no tracking, no list-sharing.</p>
+        <!-- WHEN LIVE, replace the <form>..</form> and .msg above with:
+        <a class="btn primary block" href="APPSOURCE_LISTING_URL">Get it on AppSource</a> -->
+      </div>
+    </div>
+
+    <div class="wrap" style="margin-top:44px">
+      <div class="shot" role="img" aria-label="InForm inside Microsoft Word: an APA reference-formatting issue is explained in a side pane, alongside a source-verification result confirming the cited work is real.">
+        <div class="shot-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="shot-title">Paper.docx &middot; Word</span></div>
+        <div class="inform-shot">
+          <div class="doc">
+            <div class="h"></div>
+            <div class="ln s"></div><div class="ln"></div><div class="ln x"></div>
+            <div class="ln"></div><div class="ln" style="width:66%; margin-bottom:16px"></div>
+            <div style="font-size:12px; color:#8a938e; line-height:1.7">Prior work has examined this shift <span class="cite">(Garc&iacute;a, 2019)</span> across settings.</div>
+            <div class="ln s" style="margin-top:16px"></div><div class="ln"></div>
+          </div>
+          <div class="pane">
+            <div class="pane-head"><span class="m">sv</span> InForm</div>
+            <div class="card-f">
+              <span class="chip">APA 7 &middot; 9.43</span>
+              <p class="ft">Reference entry, hanging indent</p>
+              <p>The second and later lines of a reference should be indented. Here they sit flush left.</p>
+            </div>
+            <div class="card-v">
+              <div class="vh">Source verification</div>
+              <div class="vrow"><span class="tick">&#10003;</span> Verified</div>
+              <div class="vcite">Garc&iacute;a, J. (2019). Multilingual writing development. DOI resolves; found in Crossref and OpenAlex.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPABILITIES -->
+  <section class="caps">
+    <div class="wrap">
+      <h2>Formatting is only half the problem.</h2>
+      <p class="sub">A conventional checker tells you whether a reference looks right. InForm goes further and checks whether the source behind it is actually there.</p>
+      <div class="capgrid">
+        <div class="cap">
+          <div class="cn">i.</div>
+          <h3>APA&nbsp;7 guidance</h3>
+          <p>Font, spacing, headings, page numbers, block quotations, statistics, and the reference list. InForm names each issue, points to the APA&nbsp;7 section behind it, and explains why it matters, so your next paper is better than your last.</p>
+        </div>
+        <div class="cap">
+          <div class="cn">ii.</div>
+          <h3>Citation and reference matching</h3>
+          <p>Every in-text citation should have a matching reference, and every reference should be cited. InForm reconciles the two and shows you what is missing on either side.</p>
+        </div>
+        <div class="cap">
+          <div class="cn">iii.</div>
+          <h3>Source verification</h3>
+          <p>InForm checks each cited work against several scholarly databases to confirm it is real, catches DOIs that do not resolve, and flags sources that have been retracted or corrected. This is the part a spell-checker cannot do.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEACH DON'T FIX -->
+  <section class="band">
+    <div class="wrap inner">
+      <div>
+        <span class="kicker">Teach, don't fix</span>
+        <h2>It shows you what to change. You make the call.</h2>
+      </div>
+      <div>
+        <p>InForm never rewrites your sentences or changes your citations. Its review is non-destructive: nothing in your document moves unless you ask it to.</p>
+        <p>You can insert selected findings as Word comments, or build a clean, tick-to-assemble list of feedback to hand a student. Either way, the words on the page stay yours.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT IT CHECKS -->
+  <section class="checks">
+    <div class="wrap">
+      <h2>What InForm checks</h2>
+      <p class="sub">A non-destructive review of your document, grouped the way you would review it yourself.</p>
+      <div class="checkcols">
+        <div class="chk">
+          <h3>Formatting</h3>
+          <ul>
+            <li>APA&nbsp;7 fonts and sizes</li>
+            <li>Double spacing and one-inch margins</li>
+            <li>Page numbers and running head</li>
+            <li>Heading levels and format</li>
+            <li>Paragraph and block-quote indents</li>
+            <li>Statistics and leading zeros</li>
+            <li>Tracked changes left in the draft</li>
+          </ul>
+        </div>
+        <div class="chk">
+          <h3>References</h3>
+          <ul>
+            <li>Hanging indent and size</li>
+            <li>Reference-list order</li>
+            <li>Reference list on a new page</li>
+            <li>In-text and reference-list agreement</li>
+            <li>Missing or uncited entries</li>
+          </ul>
+        </div>
+        <div class="chk">
+          <h3>Sources</h3>
+          <ul>
+            <li>Existence across scholarly databases</li>
+            <li>DOI resolution</li>
+            <li>Retractions and corrections</li>
+            <li>Live and archived web sources</li>
+            <li>Details that disagree with the record</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRIVACY -->
+  <section class="privacy">
+    <div class="wrap">
+      <div class="box">
+        <h2>It reads your paper. It never keeps it.</h2>
+        <p>InForm runs its checks on your own machine. It does not upload your document or store your writing. When it verifies a source, it sends only the reference entry, never your prose. The little it collects is anonymous usage counts, with no document text and nothing that identifies you.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq">
+    <div class="wrap">
+      <h2>Questions</h2>
+      <details>
+        <summary>Does InForm change my writing?</summary>
+        <p>No. InForm never changes your writing. Its review is non-destructive: it marks what needs attention and explains why, and the only thing it ever adds to your document is a comment, and only when you choose. It never rewrites a sentence or auto-corrects a citation.</p>
+      </details>
+      <details>
+        <summary>Does InForm send my paper, or its text, to an AI model?</summary>
+        <p>No. The formatting checks run on your own machine, and source verification is done by looking references up in bibliographic databases, not by an AI model. Your prose is never sent anywhere. Only the reference entry itself leaves your machine, and only to confirm the work exists.</p>
+      </details>
+      <details>
+        <summary>What does source verification actually do?</summary>
+        <p>For each work you cite, InForm looks it up across several scholarly databases and resolvers to confirm the source exists, checks whether a cited DOI resolves, flags works that have been retracted or corrected, and notes details that disagree with the authoritative record. It reconciles more than one source before drawing a conclusion.</p>
+      </details>
+      <details>
+        <summary>Which databases does InForm use to verify sources?</summary>
+        <p>Depending on the kind of work, InForm consults Crossref, OpenAlex, ERIC, Google Books, and Open Library, resolves DOIs directly, checks retraction and correction records, and for web sources checks the live page and web archives. Books are checked against book catalogues, journal articles against article indexes.</p>
+      </details>
+      <details>
+        <summary>What happens when InForm cannot verify a legitimate source?</summary>
+        <p>It says so plainly. Some legitimate works are hard to confirm automatically, such as unusual books, gray literature, older material, or local documents. In those cases InForm reports that it could not verify the source rather than claiming it is fake. It is built never to tell you a real source does not exist.</p>
+      </details>
+      <details>
+        <summary>Where does it run?</summary>
+        <p>Inside Microsoft Word, as an add-in. The formatting checks run on your own machine; only source verification reaches out, and only with the reference entry, never your prose.</p>
+      </details>
+      <details>
+        <summary>Can faculty use InForm to review student papers?</summary>
+        <p>Yes. InForm works on your own writing and also gives an instructor a review surface for reading a student's paper, where findings and source checks can be turned into comments or a feedback list. The judgment always stays with the reviewer.</p>
+      </details>
+      <details>
+        <summary>Which citation styles are supported?</summary>
+        <p>APA&nbsp;7 today. Support for additional styles is planned, and beta participants help decide what comes next.</p>
+      </details>
+      <details>
+        <summary>What does the free beta include, and what happens after?</summary>
+        <p>Full use of InForm for your first four months at no cost, which covers a full semester of papers, with a direct line to shape the product. Pricing after the beta has not been set yet and will be shared before your free period ends. Nothing is charged automatically.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="finalcta">
+    <div class="wrap in">
+      <h2>Get in on the ground floor.</h2>
+      <p>Reserve your place in the founding beta. Your first four months, a full semester of papers, are free.</p>
+      <div class="signup">
+        <form class="signup-form" data-product="inform" novalidate>
+          <label class="hp" aria-hidden="true">Company<input type="text" name="company" tabindex="-1" autocomplete="off"></label>
+          <input type="email" name="email" required placeholder="you@university.edu" aria-label="Email address">
+          <button class="btn primary" type="submit">Join the Waitlist</button>
+        </form>
+        <p class="msg" role="status" aria-live="polite"></p>
+        <p class="fine">One email at launch. No cookies, no tracking, no list-sharing.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-row">
+      <a class="brand" href="/" style="color:var(--ink-soft)">
+        <span class="mark" style="width:28px;height:28px;font-size:15px" aria-hidden="true">sv</span>
+        <span class="name" style="font-size:18px">ScholarVera</span>
+      </a>
+      <div class="foot-links">
+        <a href="/inform">InForm</a>
+        <a href="/writesight">WriteSight</a>
+        <a href="/support">Support</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/eula">Terms</a>
+        <a href="mailto:support@scholarvera.com">support@scholarvera.com</a>
+      </div>
+    </div>
+    <p class="foot-note">ScholarVera LLC &middot; Oklahoma, USA &middot; Est. 2026. InForm is a product of ScholarVera LLC. Microsoft and Word are trademarks of Microsoft Corporation.</p>
+  </div>
+</footer>
+
+<script>
+  // Cookieless email capture. Posts to a public Supabase edge function (Verify JWT off),
+  // guarded by a honeypot field. Endpoint + key are filled in at deploy.
+  var SV_SIGNUP = {
+    endpoint: "https://fyugpyjlcyrnqhvopdho.supabase.co/functions/v1/site-signup",
+    apikey: "sb_publishable_NDE8luhKmvNDlOsscCB2Bg_F4zKU3rC",  // Supabase publishable key (public-safe)
+    product: "inform"
+  };
+  (function(){
+    var forms = document.querySelectorAll(".signup-form");
+    Array.prototype.forEach.call(forms, function(form){
+      form.addEventListener("submit", function(e){
+        e.preventDefault();
+        var card = form.closest(".signup") || form.parentNode;
+        var msg = card.querySelector(".msg");
+        var email = (form.email.value || "").trim();
+        var hp = (form.company.value || "").trim();
+        var product = form.getAttribute("data-product") || SV_SIGNUP.product;
+        function say(t, cls){ if(msg){ msg.textContent = t; msg.className = "msg " + (cls||""); } }
+        if (hp) { say("Thanks!", "ok"); return; }            // bot tripped the honeypot
+        if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { say("Please enter a valid email address.", "err"); return; }
+        var btn = form.querySelector("button[type=submit]");
+        if (btn){ btn.disabled = true; }
+        say("Sending...", "");
+        var headers = { "Content-Type": "application/json" };
+        if (SV_SIGNUP.apikey){ headers["apikey"] = SV_SIGNUP.apikey; headers["Authorization"] = "Bearer " + SV_SIGNUP.apikey; }
+        fetch(SV_SIGNUP.endpoint, {
+          method: "POST", headers: headers,
+          body: JSON.stringify({ email: email, product: product })
+        }).then(function(r){
+          if (r.ok) { form.reset(); say("You are on the founding-beta list. We will email your invitation when it opens.", "ok"); }
+          else { say("Something went wrong. Please email support@scholarvera.com.", "err"); }
+        }).catch(function(){
+          say("Could not reach the server. Please email support@scholarvera.com.", "err");
+        }).then(function(){ if (btn){ btn.disabled = false; } });
+      });
+    });
+  })();
+</script>
+</body>
+</html>

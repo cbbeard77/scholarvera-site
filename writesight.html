@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WriteSight: see how the paper came together. A Microsoft Word add-in by ScholarVera</title>
+<meta name="description" content="WriteSight is a Microsoft Word add-in that records how a document was written and gives faculty a clear view of the writing process. Built for a conversation about the work, never an integrity score or automated accusation.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTQiIGZpbGw9IiMyZjVkNTAiLz48dGV4dCB4PSIzMiIgeT0iNDUiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhLCAnVGltZXMgTmV3IFJvbWFuJywgc2VyaWYiIGZvbnQtc2l6ZT0iMzMiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiNmZmZmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGxldHRlci1zcGFjaW5nPSIxIj5zdjwvdGV4dD48L3N2Zz4K">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="WriteSight: see how the paper came together">
+<meta property="og:description" content="A Microsoft Word add-in that records how a document was written and gives faculty the process behind a paper. A conversation, never a verdict.">
+<meta property="og:url" content="https://www.scholarvera.com/writesight">
+<meta name="theme-color" content="#2f5d50">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,400;9..144,0,500;9..144,0,600;9..144,1,400;9..144,1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c2321; --ink-soft:#46524e; --ink-faint:#6f7a76;
+    --paper:#faf8f4; --paper-2:#f3efe7; --card:#ffffff;
+    --teal:#2f5d50; --teal-deep:#234a40; --gold:#b08828; --gold-dk:#8a6a12; --gold-soft:#f4ecd9;
+    --line:#e4ded2; --line-soft:#eee9df; --ok:#2f7d5b;
+    --maxw:1060px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:"Inter",-apple-system,system-ui,sans-serif; font-size:17px; line-height:1.65; -webkit-font-smoothing:antialiased}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px}
+  a{color:inherit}
+  .skip{position:absolute; left:-999px; top:0; background:var(--teal); color:#fff; padding:10px 16px; border-radius:0 0 8px 0; z-index:100}
+  .skip:focus{left:0}
+
+  header.site{border-bottom:1px solid var(--line); background:rgba(250,248,244,.85); backdrop-filter:blur(8px); position:sticky; top:0; z-index:10}
+  .nav{display:flex; align-items:center; justify-content:space-between; height:64px}
+  .brand{display:flex; align-items:center; gap:11px; text-decoration:none; color:var(--ink)}
+  .brand .mark{width:32px; height:32px; border-radius:8px; background:var(--teal); color:#fff; display:grid; place-items:center; font-family:"Fraunces",serif; font-weight:600; font-size:17px; letter-spacing:.5px}
+  .brand .name{font-family:"Fraunces",serif; font-weight:600; font-size:20px; letter-spacing:.2px}
+  .nav-links{display:flex; gap:24px; align-items:center}
+  .nav-links a{text-decoration:none; color:var(--ink-soft); font-size:14.5px; font-weight:500}
+  .nav-links a:hover,.nav-links a[aria-current]{color:var(--teal)}
+  .nav-links a.cta{background:var(--teal); color:#fff; padding:8px 16px; border-radius:9px}
+  .nav-links a.cta:hover{background:var(--teal-deep); color:#fff}
+  @media (max-width:600px){ .nav-links{gap:14px; font-size:13.5px} .nav-links a.plain{display:none} }
+
+  section{scroll-margin-top:80px}
+  .kicker{font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:20px}
+  .status{display:inline-block; font-size:11.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; padding:5px 11px; border-radius:100px; margin-bottom:18px; background:#e7efec; color:var(--teal)}
+  .eyebrow{display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--teal); margin-bottom:16px}
+  .eyebrow::before{content:""; width:22px; height:1.5px; background:var(--gold)}
+
+  /* hero */
+  .hero{padding:74px 0 30px}
+  .hero .inner{display:grid; grid-template-columns:1.05fr 1fr; gap:48px; align-items:center}
+  .hero h1{font-family:"Fraunces",serif; font-weight:500; font-size:clamp(34px,5.2vw,54px); line-height:1.06; letter-spacing:-.015em; margin:0 0 20px}
+  .hero h1 em{font-style:italic; color:var(--teal); font-weight:500}
+  .hero .lead{font-size:18px; line-height:1.55; color:var(--ink-soft); max-width:56ch; margin:0 0 14px}
+  .hero .metaline{font-size:13px; font-weight:600; letter-spacing:.02em; color:var(--ink-faint); margin:0}
+  @media (max-width:860px){ .hero .inner{grid-template-columns:1fr; gap:34px} .hero{padding:52px 0 20px} }
+
+  /* signup card */
+  .signup{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:22px 22px 24px; box-shadow:0 18px 40px -30px rgba(35,74,64,.5)}
+  .signup .st{font-family:"Fraunces",serif; font-weight:600; font-size:19px; margin:0 0 6px; letter-spacing:-.01em}
+  .signup .sd{font-size:14.5px; color:var(--ink-soft); margin:0 0 16px}
+  .signup .free{display:inline-block; background:var(--gold-soft); color:var(--gold-dk); font-weight:600; font-size:12.5px; padding:4px 11px; border-radius:100px; margin-bottom:14px}
+  .signup-form{display:flex; gap:9px; flex-wrap:wrap}
+  .signup-form input[type=email]{flex:1 1 200px; min-width:0; font:inherit; font-size:15px; padding:12px 14px; border:1.5px solid var(--line); border-radius:10px; background:#fff; color:var(--ink)}
+  .signup-form input[type=email]:focus{outline:none; border-color:var(--teal)}
+  .hp{position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden}
+  .btn{display:inline-block; text-decoration:none; text-align:center; font-family:inherit; font-weight:600; font-size:15px; padding:12px 22px; border-radius:10px; border:0; cursor:pointer; transition:transform .12s ease, background .12s ease}
+  .btn:active{transform:translateY(1px)}
+  .btn.primary{background:var(--teal); color:#fff}
+  .btn.primary:hover{background:var(--teal-deep)}
+  .signup .msg{font-size:13.5px; margin:12px 2px 0; min-height:1.1em}
+  .signup .msg.ok{color:var(--ok)} .signup .msg.err{color:#b0402a}
+  .signup .fine{font-size:12px; color:var(--ink-faint); margin:12px 2px 0}
+
+  /* app-window mockup: faculty report */
+  .shot{border:1px solid var(--line); border-radius:14px; overflow:hidden; background:#fff; box-shadow:0 30px 60px -34px rgba(35,74,64,.5), 0 4px 14px -8px rgba(35,74,64,.25)}
+  .shot-bar{display:flex; align-items:center; gap:7px; padding:9px 14px; background:#f0ece3; border-bottom:1px solid var(--line)}
+  .shot-bar .d{width:10px; height:10px; border-radius:50%; background:#d3ccbe}
+  .shot-title{margin-left:9px; font-size:12px; color:var(--ink-faint); font-weight:500}
+  .ws-shot{padding:20px 20px 22px; background:#fbfbf9}
+  .ws-head{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:16px; flex-wrap:wrap}
+  .ws-doc{font-family:"Fraunces",serif; font-weight:600; font-size:16.5px; color:var(--ink)}
+  .ws-doc span{display:block; font-family:"Inter",sans-serif; font-weight:500; font-size:11.5px; color:var(--ink-faint); margin-top:2px}
+  .ws-note{font-size:11px; font-weight:600; color:var(--teal); background:#e7efec; padding:4px 10px; border-radius:100px; white-space:nowrap}
+  .ws-stats{display:grid; grid-template-columns:repeat(3,1fr); gap:11px; margin-bottom:16px}
+  .ws-stats .stat{background:#fff; border:1px solid var(--line); border-radius:9px; padding:13px 10px; text-align:center}
+  .ws-stats .stat b{display:block; font-family:"Fraunces",serif; font-size:22px; font-weight:600; color:var(--teal); line-height:1}
+  .ws-stats .stat span{display:block; font-size:11px; color:var(--ink-faint); margin-top:5px; letter-spacing:.02em}
+  .ws-tl{background:#fff; border:1px solid var(--line); border-radius:9px; padding:13px 14px; margin-bottom:15px}
+  .ws-tl .tlh{font-size:10.5px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:10px}
+  .ws-tl .bars{display:flex; align-items:flex-end; gap:6px; height:52px}
+  .ws-tl .bars i{flex:1; background:linear-gradient(180deg,#5a8577,#2f5d50); border-radius:3px 3px 0 0; opacity:.92}
+  .ws-flags{display:grid; gap:9px; margin-bottom:15px}
+  .ws-flags div{position:relative; font-size:13px; color:var(--ink); background:#fff; border:1px solid var(--line); border-radius:8px; padding:10px 12px 10px 30px}
+  .ws-flags div::before{content:""; position:absolute; left:12px; top:15px; width:8px; height:8px; border-radius:50%; background:var(--gold)}
+  .ws-noscore{font-size:12.5px; color:var(--ink-soft); font-style:italic; text-align:center; padding-top:2px}
+  .shot-cap{margin-top:12px; font-size:12.5px; color:var(--ink-faint); text-align:center}
+
+  /* problem band */
+  .band{padding:60px 0; border-top:1px solid var(--line); margin-top:40px; background:var(--paper-2); border-bottom:1px solid var(--line)}
+  .band .inner{display:grid; grid-template-columns:1fr 1fr; gap:44px; align-items:center}
+  .band h2{font-family:"Fraunces",serif; font-weight:500; font-size:clamp(26px,4vw,38px); line-height:1.12; letter-spacing:-.01em; margin:0 0 12px}
+  .band p{font-size:16px; color:var(--ink-soft); margin:0 0 14px}
+  .band p:last-child{margin-bottom:0}
+  @media (max-width:800px){ .band .inner{grid-template-columns:1fr; gap:22px} }
+
+  /* how it works */
+  .how{padding:64px 0 20px}
+  .how h2{font-family:"Fraunces",serif; font-weight:500; font-size:clamp(26px,4vw,36px); margin:0 0 8px; letter-spacing:-.01em}
+  .how .sub{color:var(--ink-soft); font-size:16px; margin:0 0 34px; max-width:60ch}
+  .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:20px}
+  .step{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:24px 22px 26px}
+  .step .num{width:32px; height:32px; border-radius:9px; background:var(--gold-soft); color:var(--gold-dk); display:grid; place-items:center; font-family:"Fraunces",serif; font-weight:600; font-size:16px; margin-bottom:14px}
+  .step h3{font-family:"Fraunces",serif; font-weight:600; font-size:18px; margin:0 0 8px; letter-spacing:-.01em}
+  .step p{font-size:14.5px; margin:0; color:var(--ink-soft); line-height:1.55}
+  @media (max-width:760px){ .steps{grid-template-columns:1fr} }
+
+  /* capabilities */
+  .caps{padding:60px 0 20px}
+  .caps h2{font-family:"Fraunces",serif; font-weight:500; font-size:clamp(24px,3.6vw,34px); margin:0 0 30px; letter-spacing:-.01em}
+  .capgrid{display:grid; grid-template-columns:repeat(2,1fr); gap:20px}
+  .cap{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:24px 24px 26px}
+  .cap h3{font-family:"Fraunces",serif; font-weight:600; font-size:19px; margin:0 0 9px; letter-spacing:-.01em}
+  .cap p{font-size:15px; margin:0; color:var(--ink-soft); line-height:1.55}
+  @media (max-width:700px){ .capgrid{grid-template-columns:1fr} }
+
+  /* privacy */
+  .privacy{padding:60px 0 24px}
+  .privacy .box{background:linear-gradient(160deg,#eef3f0,#f7f4ee); border:1px solid var(--line); border-radius:18px; padding:36px 34px}
+  .privacy h2{font-family:"Fraunces",serif; font-weight:500; font-size:clamp(23px,3.4vw,31px); color:var(--teal); margin:0 0 12px; letter-spacing:-.01em}
+  .privacy p{font-size:16px; color:var(--ink-soft); margin:0; max-width:74ch}
+
+  /* faq */
+  .faq{padding:60px 0 20px}
+  .faq h2{font-family:"Fraunces",serif; font-weight:500; font-size:clamp(24px,3.6vw,32px); margin:0 0 24px; letter-spacing:-.01em}
+  .faq details{border-top:1px solid var(--line); padding:18px 2px}
+  .faq details:last-of-type{border-bottom:1px solid var(--line)}
+  .faq summary{font-weight:600; font-size:16.5px; cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:16px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+"; color:var(--gold); font-size:22px; font-weight:400; line-height:1}
+  .faq details[open] summary::after{content:"\2212"}
+  .faq details p{margin:12px 0 0; color:var(--ink-soft); font-size:15.5px; max-width:74ch}
+
+  /* final cta */
+  .finalcta{margin-top:56px; background:linear-gradient(160deg,var(--teal),var(--teal-deep)); color:#fff}
+  .finalcta .in{padding:64px 0 68px; text-align:center}
+  .finalcta h2{font-family:"Fraunces",serif; font-weight:500; font-size:clamp(25px,3.8vw,36px); line-height:1.18; margin:0 auto 12px; max-width:22ch; color:#fff; letter-spacing:-.01em}
+  .finalcta p{color:rgba(255,255,255,.84); font-size:16.5px; max-width:52ch; margin:0 auto 24px}
+  .finalcta .signup{max-width:460px; margin:0 auto; text-align:left; color:var(--ink)}
+
+  footer.site{border-top:1px solid var(--line); padding:44px 0 56px; color:var(--ink-faint); font-size:14px; background:var(--paper-2); margin-top:0}
+  .foot-row{display:flex; flex-wrap:wrap; gap:14px 22px; align-items:center; justify-content:space-between}
+  .foot-links{display:flex; gap:18px; flex-wrap:wrap}
+  .foot-links a{color:var(--ink-soft); text-decoration:none; font-weight:500}
+  .foot-links a:hover{color:var(--teal)}
+  .foot-note{margin-top:16px; font-size:12.5px; color:var(--ink-faint); max-width:74ch}
+
+  :focus-visible{outline:2px solid var(--teal); outline-offset:3px; border-radius:3px}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site">
+  <div class="wrap nav">
+    <a class="brand" href="/"><span class="mark" aria-hidden="true">sv</span><span class="name">ScholarVera</span></a>
+    <nav class="nav-links" aria-label="Primary">
+      <a class="plain" href="/inform">InForm</a>
+      <a class="plain" href="/writesight" aria-current="page">WriteSight</a>
+      <a class="plain" href="/support">Support</a>
+      <a class="cta" href="#get-updates">Get More Information</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap inner">
+      <div class="copy">
+        <span class="eyebrow">WriteSight for Microsoft Word</span>
+        <h1>See <em>how</em> the paper came together.</h1>
+        <p class="lead">WriteSight is an add-in for Microsoft Word that records how a document was written, then gives faculty a clear view of the writing process. It is built for a conversation about the work, not a verdict about the student.</p>
+        <p class="metaline">Microsoft Word add-in &nbsp;&middot;&nbsp; Process, not detection &nbsp;&middot;&nbsp; Privacy-first &nbsp;&middot;&nbsp; No integrity score</p>
+      </div>
+
+      <div class="signup" id="get-updates">
+        <span class="status">In pilot studies</span>
+        <div class="st">Bring WriteSight to your classroom</div>
+        <p class="sd">WriteSight is rolling out through university pilots. Add your email and we will reach out about bringing it to your course or program.</p>
+        <form class="signup-form" data-product="writesight" novalidate>
+          <label class="hp" aria-hidden="true">Company<input type="text" name="company" tabindex="-1" autocomplete="off"></label>
+          <input type="email" name="email" required placeholder="you@university.edu" aria-label="Email address">
+          <button class="btn primary" type="submit">Get More Information</button>
+        </form>
+        <p class="msg" role="status" aria-live="polite"></p>
+        <p class="fine">Live on Microsoft AppSource, granted per pilot. No cookies, no tracking, no list-sharing.</p>
+      </div>
+    </div>
+
+    <div class="wrap" style="margin-top:44px">
+      <div class="shot" role="img" aria-label="WriteSight faculty report: a writing-process summary showing four sessions, active writing time, days from draft to final, a revision timeline, and two neutral observations, with a clear note that there is no integrity score.">
+        <div class="shot-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="shot-title">WriteSight &middot; Writing process report</span></div>
+        <div class="ws-shot">
+          <div class="ws-head">
+            <div class="ws-doc">Reflection Essay 2<span>Submitted for review</span></div>
+            <span class="ws-note">For a conversation, not a score</span>
+          </div>
+          <div class="ws-stats">
+            <div class="stat"><b>4</b><span>writing sessions</span></div>
+            <div class="stat"><b>3h 40m</b><span>active writing</span></div>
+            <div class="stat"><b>12 days</b><span>draft to final</span></div>
+          </div>
+          <div class="ws-tl">
+            <div class="tlh">Activity across the assignment</div>
+            <div class="bars"><i style="height:35%"></i><i style="height:62%"></i><i style="height:48%"></i><i style="height:80%"></i><i style="height:40%"></i><i style="height:70%"></i><i style="height:55%"></i><i style="height:90%"></i><i style="height:44%"></i><i style="height:66%"></i></div>
+          </div>
+          <div class="ws-flags">
+            <div>Steady revision across sessions, from outline to final.</div>
+            <div>Two large pasted passages worth asking the student about.</div>
+          </div>
+          <div class="ws-noscore">No integrity score. No accusation. Just the process, for you to read.</div>
+        </div>
+      </div>
+      <p class="shot-cap">The faculty report: the writing process behind a paper, framed to start a conversation.</p>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="band">
+    <div class="wrap inner">
+      <div>
+        <span class="kicker">The problem</span>
+        <h2>AI changed the question.</h2>
+      </div>
+      <div>
+        <p>Faculty increasingly need to understand not only what a student submitted, but how the work came together.</p>
+        <p>AI detectors estimate that from the finished text alone. WriteSight takes a different approach: it shows the writing process itself, and leaves the interpretation with the educator.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how">
+    <div class="wrap">
+      <h2>How WriteSight works</h2>
+      <p class="sub">Three quiet steps, from the first draft to the faculty report.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="num">1</div>
+          <h3>The student writes</h3>
+          <p>Once the student is signed in, WriteSight records quietly inside Word while they draft. There is no separate app to open and no session to start by hand.</p>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <h3>The process is recorded</h3>
+          <p>How the document was built is captured as a tamper-evident record kept inside the document itself. It attests to the process, not to a copy of the writing.</p>
+        </div>
+        <div class="step">
+          <div class="num">3</div>
+          <h3>Faculty read the report</h3>
+          <p>The instructor opens a clear summary of the writing process, framed for a conversation. There is no score to accept or dispute.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT IT SHOWS -->
+  <section class="caps">
+    <div class="wrap">
+      <h2>What the report shows</h2>
+      <div class="capgrid">
+        <div class="cap">
+          <h3>The shape of the work</h3>
+          <p>Writing sessions, active time, and the span from first draft to final, so a paper written over two weeks looks different from one produced in a single sitting.</p>
+        </div>
+        <div class="cap">
+          <h3>Patterns worth a question</h3>
+          <p>Steady revision, or moments like a large pasted passage, surfaced plainly as things worth asking about, never as proof of anything.</p>
+        </div>
+        <div class="cap">
+          <h3>No integrity score</h3>
+          <p>WriteSight never produces a percentage, a risk level, or an accusation. It gives you information to interpret, not a verdict to enforce.</p>
+        </div>
+        <div class="cap">
+          <h3>Built for a conversation</h3>
+          <p>The report is designed to open a discussion with a student about their process, where real learning about writing, revision, authorship, and academic integrity can happen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTITUTIONAL -->
+  <section class="band" style="margin-top:0">
+    <div class="wrap">
+      <span class="kicker">For programs and institutions</span>
+      <h2>Built for responsible institutional use.</h2>
+      <p style="max-width:66ch">Writing-process information helps faculty ask better questions: what changed between drafts, how a student approached revision, what explains a sudden shift in a document. The report supplies context; the educator supplies judgment. For a program, that is a steadier alternative to high-stakes decisions made from a single automated score.</p>
+      <div class="steps" style="margin-top:28px">
+        <div class="step"><h3>No guilt scores</h3><p>A consistent, process-informed approach across courses, with no automated risk numbers or accusations.</p></div>
+        <div class="step"><h3>Minimal collection</h3><p>WriteSight records the process, not the student's writing, and keeps that record with the document.</p></div>
+        <div class="step"><h3>People stay central</h3><p>Faculty interpretation and the conversation with the student remain the point. The tool informs; it never decides.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRIVACY -->
+  <section class="privacy">
+    <div class="wrap">
+      <div class="box">
+        <h2>It records the process, not the paper.</h2>
+        <p>WriteSight captures how a document was written, the rhythm of typing, pausing, pasting, and revising, as a tamper-evident record. That record is stored with the document rather than in a central repository, and it never includes a copy of the student's writing. WriteSight uses separate sign-in and licensing services to confirm access; those do not hold the prose or the process record. Faculty see the process behind the work, never a surveillance feed of the student.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq">
+    <div class="wrap">
+      <h2>Questions</h2>
+      <details>
+        <summary>Is WriteSight an AI detector?</summary>
+        <p>No. WriteSight does not guess whether AI was used and never produces a score or an accusation. AI detectors estimate from the finished text alone; WriteSight takes a different approach and shows how the document was written, leaving the interpretation to the educator.</p>
+      </details>
+      <details>
+        <summary>What does "tamper-evident" mean?</summary>
+        <p>It means the record is designed so that changes to the recorded history can be detected rather than silently rewritten. That is what lets a reader trust that the process they are seeing is the process that actually happened.</p>
+      </details>
+      <details>
+        <summary>What exactly does WriteSight record, and what does it not?</summary>
+        <p>It records the shape of the writing process: session timing, typing and pausing, pasted passages, and revision over time. It does not record a copy of the text you write. The report is built from how the document came together, not from its contents.</p>
+      </details>
+      <details>
+        <summary>Does WriteSight send any writing-process data to ScholarVera?</summary>
+        <p>The writing-process record stays with the document and is not sent to ScholarVera. WriteSight uses account and licensing services to sign a user in and confirm access, and those do not contain the writing or the process record.</p>
+      </details>
+      <details>
+        <summary>What does the faculty report contain?</summary>
+        <p>A summary of the writing process: the number of sessions, active writing time, the span from first draft to final, a view of activity over time, and neutral observations such as a large pasted passage. It is framed to prompt a conversation, not to deliver a judgment.</p>
+      </details>
+      <details>
+        <summary>What if a student writes offline, or in another application?</summary>
+        <p>WriteSight records the work done in Word with the add-in signed in. Writing done in another application, or with the add-in turned off, is not captured, so the report reflects the drafting that happened in Word. That is a limit worth naming plainly rather than implying the record is exhaustive.</p>
+      </details>
+      <details>
+        <summary>Can WriteSight be used in an academic-integrity process?</summary>
+        <p>WriteSight provides process information that can inform a faculty member's questions and a conversation with a student. It is not designed to be standalone proof of misconduct and should not be treated as a verdict. The judgment stays with the educator and the institution.</p>
+      </details>
+      <details>
+        <summary>Can students see their own record?</summary>
+        <p>The current focus is the faculty view used in our pilots. A student-facing view, where a writer can share the process behind their work, is on the roadmap.</p>
+      </details>
+      <details>
+        <summary>How do we get WriteSight?</summary>
+        <p>WriteSight is live on Microsoft AppSource and is rolling out through university pilots, granted per participating course or program. Add your email above and we will reach out about a pilot that fits your setting.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="finalcta">
+    <div class="wrap in">
+      <h2>Bring the process into the conversation.</h2>
+      <p>WriteSight is in pilot studies with universities. Tell us about your course or program and we will be in touch.</p>
+      <div class="signup">
+        <form class="signup-form" data-product="writesight" novalidate>
+          <label class="hp" aria-hidden="true">Company<input type="text" name="company" tabindex="-1" autocomplete="off"></label>
+          <input type="email" name="email" required placeholder="you@university.edu" aria-label="Email address">
+          <button class="btn primary" type="submit">Get More Information</button>
+        </form>
+        <p class="msg" role="status" aria-live="polite"></p>
+        <p class="fine">Live on Microsoft AppSource, granted per pilot. No cookies, no tracking, no list-sharing.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-row">
+      <a class="brand" href="/" style="color:var(--ink-soft)">
+        <span class="mark" style="width:28px;height:28px;font-size:15px" aria-hidden="true">sv</span>
+        <span class="name" style="font-size:18px">ScholarVera</span>
+      </a>
+      <div class="foot-links">
+        <a href="/inform">InForm</a>
+        <a href="/writesight">WriteSight</a>
+        <a href="/support">Support</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/eula">Terms</a>
+        <a href="mailto:support@scholarvera.com">support@scholarvera.com</a>
+      </div>
+    </div>
+    <p class="foot-note">ScholarVera LLC &middot; Oklahoma, USA &middot; Est. 2026. WriteSight is a product of ScholarVera LLC. Patent pending. Microsoft and Word are trademarks of Microsoft Corporation.</p>
+  </div>
+</footer>
+
+<script>
+  var SV_SIGNUP = {
+    endpoint: "https://fyugpyjlcyrnqhvopdho.supabase.co/functions/v1/site-signup",
+    apikey: "sb_publishable_NDE8luhKmvNDlOsscCB2Bg_F4zKU3rC",  // Supabase publishable key (public-safe)
+    product: "writesight"
+  };
+  (function(){
+    var forms = document.querySelectorAll(".signup-form");
+    Array.prototype.forEach.call(forms, function(form){
+      form.addEventListener("submit", function(e){
+        e.preventDefault();
+        var card = form.closest(".signup") || form.parentNode;
+        var msg = card.querySelector(".msg");
+        var email = (form.email.value || "").trim();
+        var hp = (form.company.value || "").trim();
+        var product = form.getAttribute("data-product") || SV_SIGNUP.product;
+        function say(t, cls){ if(msg){ msg.textContent = t; msg.className = "msg " + (cls||""); } }
+        if (hp) { say("Thanks!", "ok"); return; }
+        if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { say("Please enter a valid email address.", "err"); return; }
+        var btn = form.querySelector("button[type=submit]");
+        if (btn){ btn.disabled = true; }
+        say("Sending...", "");
+        var headers = { "Content-Type": "application/json" };
+        if (SV_SIGNUP.apikey){ headers["apikey"] = SV_SIGNUP.apikey; headers["Authorization"] = "Bearer " + SV_SIGNUP.apikey; }
+        fetch(SV_SIGNUP.endpoint, {
+          method: "POST", headers: headers,
+          body: JSON.stringify({ email: email, product: product })
+        }).then(function(r){
+          if (r.ok) { form.reset(); say("Thank you. We will be in touch with more information.", "ok"); }
+          else { say("Something went wrong. Please email support@scholarvera.com.", "err"); }
+        }).catch(function(){
+          say("Could not reach the server. Please email support@scholarvera.com.", "err");
+        }).then(function(){ if (btn){ btn.disabled = false; } });
+      });
+    });
+  })();
+</script>
+</body>
+</html>
