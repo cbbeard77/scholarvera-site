@@ -85,7 +85,7 @@
 <main id="main">
   <section class="legal-hero">
     <div class="wrap">
-      <span class="tag">Privacy Policy &middot; Version 1.2</span>
+      <span class="tag">Privacy Policy &middot; Version 1.3</span>
       <h1>What we handle, and what we don't.</h1>
       <p class="meta"><b>Effective 15 August 2026</b> &nbsp;&middot;&nbsp; ScholarVera LLC &nbsp;&middot;&nbsp; Oklahoma, USA</p>
     </div>
@@ -110,7 +110,7 @@
       <div class="n">02</div>
       <h2>Our core commitment</h2>
       <p>We design our tools to minimize the student data we touch. Wherever a feature can work without us collecting or storing your writing, that is how we build it.</p>
-      <p>This is not only a privacy stance, it is how the tools are engineered. It is the reason WriteSight keeps its record inside your document rather than on a server, and the reason InForm runs its checks on your machine and never asks for the body of your work. The one place we do hold data is the account that signs you in, covered in its own section below.</p>
+      <p>This is not only a privacy stance, it is how the tools are engineered. It is the reason WriteSight keeps its record inside your document rather than on a server, and the reason InForm runs its checks on your machine and never asks for the body of your work. The main data we hold is the account that signs you in, covered in its own section below; we describe the other limited information we may receive throughout this policy.</p>
     </div>
 
     <div class="sec">
@@ -120,7 +120,7 @@
       <p>WriteSight observes how a document is constructed while you write, patterns of typing, pasting, and revision over time, and assembles that into a "provenance record." This record is meant to give faculty context for a conversation about the writing process. It does not capture the meaning or content of what you write as something we receive; it describes how the document came together.</p>
       <h3>Where that record lives</h3>
       <p>The provenance record is stored inside the .docx file itself, in a dedicated part of the document. It travels with the file. When you submit your document, the record goes wherever the document goes, to your learning management system or to your instructor, exactly like the rest of the file's contents.</p>
-      <p><b>ScholarVera does not receive this record.</b> Because the data lives in your document and not on our servers, we do not collect it, store it, or have access to it. We could not hand it over or sell it if we wanted to, because we never have it.</p>
+      <p><b>Under the standard WriteSight workflow, ScholarVera does not receive this record.</b> Because it lives inside your document and not on our servers, we do not collect it or store it centrally. It is shared only when you share the document itself, most often with an instructor reviewing submitted work.</p>
       <h3>Tamper-evidence</h3>
       <p>The record includes integrity protection so that later alteration can be detected. This protection operates within your document and your signed-in session; it does not involve sending your writing to us.</p>
       <h3>Who can see the record</h3>
@@ -135,9 +135,9 @@
       <h3>Where the checks run</h3>
       <p>The formatting and citation checks run on your own machine, inside Word. Your document is not uploaded to us and we do not keep a copy of it.</p>
       <h3>Source verification</h3>
-      <p>To confirm that a cited work exists, InForm sends the <b>reference entry</b> (for example, an author, title, year, and DOI) to scholarly databases and resolvers. It does not send the body of your paper, and it does not send your prose. The reference text necessary to perform a lookup is transmitted to those services only for that purpose. Verifying a source may involve querying external services such as Crossref, OpenAlex, ERIC, Google Books, Open Library, DOI resolvers, retraction and correction records, and, for web sources, the live page and public web archives.</p>
+      <p>To confirm that a cited work exists, InForm sends the <b>reference entry</b> (for example, an author, title, year, and DOI) to ScholarVera's verification service, which looks it up across scholarly databases and resolvers. It sends only the reference entry, never the body of your paper and never your prose. The service may query external sources such as Crossref, OpenAlex, ERIC, Google Books, Open Library, DOI resolvers, retraction and correction records, and, for web sources, the live page and public web archives. It caches public bibliographic facts about works, which are not linked to you or your document, so repeat lookups are faster.</p>
       <h3>Usage information</h3>
-      <p>InForm may collect <b>anonymous usage counts</b> to understand how the tool performs and where it can improve, for example the number of findings of a given type. These counts contain no document text, no titles, no author names, and nothing that identifies you or your document.</p>
+      <p>InForm may collect <b>aggregate, de-identified usage counts</b> to understand how the tool performs and where it can improve, for example the number of findings of a given type. These counts contain no document text, no titles, no author names, and nothing that identifies you or your document. As with any hosted service, our infrastructure also processes standard technical data such as request logs, noted below.</p>
       <p>During the InForm beta, participants sign in and the tool additionally records limited beta information tied to your account: your selected role (for example, faculty or student), your answers to optional short surveys, and, if you ask to be notified when the trial ends, the email address you provide for that purpose. This helps us run and improve the beta.</p>
       <div class="callout">The same source-verification practice applies to any standalone web version of our reference checker: your references are processed to produce results and are not retained afterward.</div>
     </div>
@@ -145,10 +145,10 @@
     <div class="sec">
       <div class="n">05</div>
       <h2>Accounts and authentication</h2>
-      <p>Using WriteSight and InForm requires signing in, so the tool can confirm you are an authorized user and run in the right mode. This is the one place we hold data about you, so we are specific about it.</p>
+      <p>Using WriteSight and InForm requires signing in, so the tool can confirm you are an authorized user and run in the right mode. Account and access information is our primary persistent record about you, so we are specific about it. We may also receive the limited beta, support, signup, usage, and technical information described elsewhere in this policy.</p>
       <h3>What we collect for your account</h3>
       <ul>
-        <li>Your <b>email address and a password</b>, which you provide to create and access your account.</li>
+        <li>Your <b>email address and an authentication credential</b>, which you provide to create and access your account. Authentication is handled by Supabase on our behalf, and ScholarVera does not receive or store your password in readable form.</li>
         <li>Your <b>entitlement</b>, the record that your account has been granted access, and in which role. This tells the add-in which mode to open in.</li>
         <li><b>Basic sign-in activity</b> needed to operate the service securely, such as when an access token was issued.</li>
       </ul>
@@ -156,7 +156,7 @@
       <p>Authentication is handled through <b>Supabase</b>, a third-party platform we use to manage accounts and access securely on our behalf. Your email and password are processed by Supabase to verify you. When you sign in, the add-in receives a short-lived access token that identifies your account and role; that token is what lets the tool run. We do not see your password in readable form.</p>
       <h3>What we do not tie to your account</h3>
       <p>Your account confirms who you are and what access you have. It is not a store of your writing. WriteSight's provenance record still lives inside your document, and InForm's checks run on your machine. Signing in does not send us the text of your work.</p>
-      <div class="callout">Plain version: we keep your email, password, and what you are allowed to use, the minimum to run a login. We do not keep your documents or your writing.</div>
+      <div class="callout">Plain version: we keep your email and what you are allowed to use, the minimum to run a login. Your password is handled by our sign-in provider, not stored by us in readable form. We do not keep your documents or your writing.</div>
     </div>
 
     <div class="sec">
@@ -172,7 +172,7 @@
       <p>Operating any software involves some limited data. To be straightforward about it:</p>
       <ul>
         <li><b>Account data</b>, as described in the accounts section above.</li>
-        <li><b>Anonymous usage counts</b> from InForm, as described above, which contain no writing and nothing that identifies you.</li>
+        <li><b>Aggregate, de-identified usage counts</b> from InForm, as described above, which contain no writing and nothing that identifies you.</li>
         <li><b>Basic technical and service data.</b> Like most hosted services, our infrastructure may process standard technical information, such as request logs, needed to run, secure, and troubleshoot the service.</li>
         <li><b>What you send us directly.</b> If you email us for support or fill out a form, we receive what you send.</li>
       </ul>
@@ -192,24 +192,30 @@
 
     <div class="sec">
       <div class="n">09</div>
+      <h2>How we protect data</h2>
+      <p>We use reasonable administrative, technical, and organizational safeguards appropriate to the limited data we handle, including encrypted connections for data in transit. No system is perfectly secure, and part of our approach is simply to hold as little as possible in the first place.</p>
+    </div>
+
+    <div class="sec">
+      <div class="n">10</div>
       <h2>Retention and your choices</h2>
       <p>We keep account data for as long as your account is active, and signup emails until you ask us to remove them or they are no longer needed. Reference lookups are processed to produce a result and are not retained as a history against you. You may ask us to access or delete the personal data we hold about you, or to remove you from a signup list, by emailing us at the address below.</p>
     </div>
 
     <div class="sec">
-      <div class="n">10</div>
-      <h2>Education context</h2>
-      <p>Our tools are used in educational settings. Because WriteSight keeps its record in the document and InForm runs on your machine, the amount of student data we hold is intentionally minimal. Where an institution deploys our tools, we work with that institution and its own review and privacy processes.</p>
-    </div>
-
-    <div class="sec">
       <div class="n">11</div>
-      <h2>Changes to this policy</h2>
-      <p>We may revise this policy as our products evolve. When we do, we will update the version and effective date at the top. Significant changes will be reflected here rather than applied quietly.</p>
+      <h2>Education and institutions</h2>
+      <p>Our tools are made for higher education and are not directed to children under 13. Because WriteSight keeps its record in the document and InForm runs on your machine, the amount of student data we hold is intentionally minimal. When an institution provides or manages access, it may determine the purposes for which certain account or service data is processed, and we process that data under our agreement with the institution and applicable education and privacy requirements.</p>
     </div>
 
     <div class="sec">
       <div class="n">12</div>
+      <h2>Changes to this policy</h2>
+      <p>We may revise this policy as our products evolve. When we do, we will update the version and effective date at the top. For material changes to how we handle personal information, we will provide notice appropriate to the change, which may include notice in the product, by email, or through an institutional administrator, and where required we will seek consent before applying materially different uses to information already collected.</p>
+    </div>
+
+    <div class="sec">
+      <div class="n">13</div>
       <h2>Contact</h2>
       <p>Questions about privacy, or a request about your data? Email <a href="mailto:support@scholarvera.com">support@scholarvera.com</a>.</p>
     </div>
