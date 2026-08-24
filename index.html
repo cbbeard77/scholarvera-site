@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ScholarVera: integrity through understanding, not accusation</title>
-<meta name="description" content="ScholarVera makes privacy-first tools for scholarly writing. InForm checks APA 7 and verifies the sources behind your citations without changing a word. WriteSight shows faculty how a paper came together, as a conversation, never a score.">
-<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<meta name="description" content="ScholarVera makes privacy-first tools for scholarly writing. InForm checks APA 7 and verifies the sources behind the citations, without changing a word. WriteSight shows faculty how a paper came together, as a conversation, never a score.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTQiIGZpbGw9IiMyZjVkNTAiLz48dGV4dCB4PSIzMiIgeT0iNDUiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhLCAnVGltZXMgTmV3IFJvbWFuJywgc2VyaWYiIGZvbnQtc2l6ZT0iMzMiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiNmZmZmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGxldHRlci1zcGFjaW5nPSIxIj5zdjwvdGV4dD48L3N2Zz4K">
-<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:title" content="ScholarVera: integrity through understanding, not accusation">
 <meta property="og:description" content="Privacy-first tools for scholarly writing. InForm understands the scholarship. WriteSight understands the process. Neither writes the paper. Neither renders a verdict.">
@@ -83,6 +83,7 @@
   .product.rev .copy{order:2} .product.rev .shotwrap{order:1}
   .status{display:inline-block; font-size:11.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; padding:5px 11px; border-radius:100px; margin-bottom:16px}
   .status.soon{background:var(--gold-soft); color:var(--gold-dk)}
+  .status.live{background:#e2efe8; color:var(--ok)}
   .status.pilot{background:#e7efec; color:var(--teal)}
   .product h2{font-family:"Fraunces",serif; font-weight:500; font-size:clamp(28px,4.2vw,38px); line-height:1.1; letter-spacing:-.01em; margin:0 0 16px}
   .product .desc{font-size:16.5px; color:var(--ink-soft); margin:0 0 20px}
@@ -99,43 +100,49 @@
   .shot-title{margin-left:9px; font-size:12px; color:var(--ink-faint); font-weight:500}
 
   /* InForm shot */
-  .inform-shot{display:grid; grid-template-columns:1.35fr 1fr; min-height:280px}
+  .inform-shot{display:grid; grid-template-columns:1.05fr 1fr; min-height:280px}
   .inform-shot .doc{padding:22px 20px; background:#fff}
   .inform-shot .doc .h{height:11px; width:60%; border-radius:3px; background:#dfe4e0; margin:0 0 16px}
   .inform-shot .doc .ln{height:8px; border-radius:3px; background:#eef0ec; margin:0 0 10px}
   .inform-shot .doc .ln.s{width:88%} .inform-shot .doc .ln.m{width:96%} .inform-shot .doc .ln.x{width:74%}
   .inform-shot .doc .cite{display:inline-block; background:var(--gold-soft); color:var(--gold-dk); border-bottom:2px solid #e4c877; border-radius:3px; padding:1px 5px; font-size:12px; font-weight:600}
-  .inform-shot .pane{background:#f6f8f6; border-left:1px solid var(--line); padding:16px 15px; display:flex; flex-direction:column; gap:13px}
-  .inform-shot .pane-head{display:flex; align-items:center; gap:8px; font-family:"Fraunces",serif; font-weight:600; font-size:15px; color:var(--teal); padding-bottom:2px}
-  .inform-shot .pane-head .m{width:20px; height:20px; border-radius:6px; background:var(--teal); color:#fff; display:grid; place-items:center; font-size:11px; font-weight:700}
-  .card-f{background:#fff; border:1px solid var(--line); border-radius:10px; padding:12px 13px}
-  .card-f .chip{display:inline-block; font-size:10px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--gold-dk); background:var(--gold-soft); padding:2px 7px; border-radius:5px; margin-bottom:7px}
-  .card-f .ft{font-weight:600; font-size:13.5px; margin:0 0 5px; color:var(--ink)}
-  .card-f p{margin:0; font-size:12.5px; line-height:1.5; color:var(--ink-soft)}
-  .card-v{background:#fff; border:1px solid #d5e6dc; border-radius:10px; padding:12px 13px}
-  .card-v .vh{font-size:10px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:8px}
-  .card-v .vrow{display:flex; align-items:center; gap:8px; font-size:13px; font-weight:600; color:var(--ok); margin-bottom:6px}
-  .card-v .tick{width:18px; height:18px; border-radius:50%; background:var(--ok); color:#fff; display:grid; place-items:center; font-size:11px; flex:none}
-  .card-v .vcite{font-size:11.5px; line-height:1.45; color:var(--ink-soft)}
+  /* The pane mockup mirrors the real add-in: brand line, teal section bars with
+     gold counts, confidence doors, and rule rows. Values taken from apa-faculty.html. */
+  .inform-shot .pane{background:#fff; border-left:1px solid var(--line); padding:14px 13px; display:flex; flex-direction:column; gap:9px}
+  .pane-brand{display:flex; align-items:baseline; gap:6px; padding-bottom:9px; border-bottom:1px solid #e2e2e2}
+  .pane-brand .b1{font-size:12px; font-weight:600; color:var(--gold-dk)}
+  .pane-brand .b2{font-size:13.5px; font-weight:700; color:var(--teal); flex:1}
+  .pane-brand .b3{white-space:nowrap; font-size:8.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#8a6a12; background:#fbf3de; border:1px solid #ecdcb4; border-radius:100px; padding:2px 7px}
+  .sectbar{display:flex; align-items:center; gap:8px; background:var(--teal); border-radius:7px; padding:7px 10px}
+  .sectbar span{flex:1; white-space:nowrap; font-size:9.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:#fff}
+  .sectbar b{font-size:9.5px; font-weight:700; color:#ecc76b}
+  .doorcard{background:var(--teal); border-radius:9px; padding:10px 11px}
+  .doorcard .dt{font-size:12.5px; font-weight:650; color:#fff}
+  .doorcard .db{font-size:9.5px; color:#c5d8d1; line-height:1.35; margin-top:2px}
+  .doorcard .di{font-size:9.5px; font-weight:700; color:#ecc76b; margin-top:4px}
+  .rulerowm{display:flex; align-items:flex-start; gap:8px; background:#f4f8f6; border:1px solid #dfe6e3; border-radius:7px; padding:8px 10px}
+  .rulerowm span{flex:1; font-size:10.5px; font-weight:700; color:var(--teal); line-height:1.35}
+  .rulerowm b{font-size:10px; font-weight:700; color:#5c5c5c}
 
   /* WriteSight shot */
-  .ws-shot{padding:18px 18px 20px; background:#fbfbf9}
-  .ws-head{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:15px; flex-wrap:wrap}
-  .ws-doc{font-family:"Fraunces",serif; font-weight:600; font-size:15.5px; color:var(--ink)}
-  .ws-doc span{display:block; font-family:"Inter",sans-serif; font-weight:500; font-size:11.5px; color:var(--ink-faint); margin-top:2px}
-  .ws-note{font-size:11px; font-weight:600; color:var(--teal); background:#e7efec; padding:4px 10px; border-radius:100px; white-space:nowrap}
-  .ws-stats{display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:15px}
-  .ws-stats .stat{background:#fff; border:1px solid var(--line); border-radius:9px; padding:11px 10px; text-align:center}
-  .ws-stats .stat b{display:block; font-family:"Fraunces",serif; font-size:20px; font-weight:600; color:var(--teal); line-height:1}
-  .ws-stats .stat span{display:block; font-size:10.5px; color:var(--ink-faint); margin-top:5px; letter-spacing:.02em}
-  .ws-tl{background:#fff; border:1px solid var(--line); border-radius:9px; padding:12px 13px; margin-bottom:14px}
-  .ws-tl .tlh{font-size:10px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:9px}
-  .ws-tl .bars{display:flex; align-items:flex-end; gap:5px; height:44px}
-  .ws-tl .bars i{flex:1; background:linear-gradient(180deg,#5a8577,#2f5d50); border-radius:3px 3px 0 0; opacity:.9}
-  .ws-flags{display:grid; gap:8px; margin-bottom:14px}
-  .ws-flags div{position:relative; padding-left:20px; font-size:12.5px; color:var(--ink); background:#fff; border:1px solid var(--line); border-radius:8px; padding:9px 11px 9px 28px}
-  .ws-flags div::before{content:""; position:absolute; left:11px; top:14px; width:7px; height:7px; border-radius:50%; background:var(--gold)}
-  .ws-noscore{font-size:12px; color:var(--ink-soft); font-style:italic; text-align:center; padding-top:2px}
+  /* WriteSight report mockup, rebuilt from faculty-review.js renderInto().
+     The real report is a headline sentence, a triage box, key/value cards and a
+     cumulative timeline whose vertical cliffs are pasted blocks. */
+  .ws-shot{padding:16px 16px 18px; background:#fff; font-family:"Inter",-apple-system,system-ui,sans-serif; color:#1a1a1a}
+  .ws-shot .wsh1{font-size:16px; font-weight:700; margin:0; letter-spacing:-.01em}
+  .ws-shot .wssub{color:#5c5c5c; font-size:11.5px; margin:1px 0 14px}
+  .ws-shot .wshead{font-size:13.5px; font-weight:600; margin:0 0 11px; line-height:1.4}
+  .ws-look{border:1px solid #e3c98c; background:#fbf5e6; border-radius:8px; padding:11px 13px; margin-bottom:12px}
+  .ws-look .th{font-weight:600; color:#8a6212; font-size:12.5px; margin-bottom:7px}
+  .ws-look .item{display:flex; align-items:flex-start; gap:8px; font-size:12px; color:#5a4710; line-height:1.45}
+  .ws-look .item svg{flex:none; margin-top:2px}
+  .ws-card{border:1px solid #e2e2e2; border-radius:8px; padding:11px 13px; margin-bottom:11px}
+  .ws-card h4{font-size:12.5px; margin:0 0 6px; font-weight:600}
+  .ws-kv{display:flex; justify-content:space-between; gap:10px; padding:5px 0; border-bottom:1px solid #e2e2e2; font-size:12px}
+  .ws-kv:last-child{border-bottom:none}
+  .ws-kv .v{font-weight:600; font-variant-numeric:tabular-nums}
+  .ws-card .tnote{color:#8a8a8a; font-size:10.5px; margin:0 0 7px; line-height:1.45}
+  .ws-card svg.tl{display:block; width:100%; max-width:340px; height:auto; border:1px solid #e2e2e2; border-radius:6px; margin-top:6px}
 
   .shot-cap{margin-top:12px; font-size:12.5px; color:var(--ink-faint); text-align:center}
 
@@ -202,7 +209,7 @@
     <div class="wrap">
       <span class="eyebrow">Software for scholarly writing</span>
       <h1>Integrity through <em>understanding</em>, not accusation.</h1>
-      <p class="lead">ScholarVera makes privacy-first tools for students and faculty. <b>InForm</b> checks APA&nbsp;7 and verifies the sources behind your citations, without changing a word. <b>WriteSight</b> shows faculty how a paper came together, as a conversation, never a score.</p>
+      <p class="lead">ScholarVera makes privacy-first tools for students and faculty. <b>InForm</b> checks APA&nbsp;7 and verifies the sources behind the citations, without changing a word. <b>WriteSight</b> shows faculty how a paper came together, as a conversation, never a score.</p>
       <div class="btnrow">
         <a class="btn primary" href="/inform">Explore InForm</a>
         <a class="btn ghost" href="/writesight">Explore WriteSight</a>
@@ -233,19 +240,22 @@
   <section class="product" id="inform-block">
     <div class="wrap inner">
       <div class="copy">
-        <span class="status soon">Coming soon</span>
+        <span class="status live">Available now</span>
         <h2>Formatting is only half the problem.</h2>
         <p class="desc">InForm is an APA&nbsp;7 checker that lives inside Microsoft Word. It does not just ask whether a reference looks right. It checks whether the source behind it can actually be found.</p>
         <ul class="featlist">
           <li><b>APA&nbsp;7 guidance</b> that names each issue and explains why it matters.</li>
           <li><b>Citation and reference matching</b>, so in-text citations and the reference list stay in agreement.</li>
           <li><b>Source verification</b> that checks cited works against the scholarly record and flags what cannot be found.</li>
-          <li><b>Teach, don't fix.</b> It shows you exactly what to change and leaves the writing to you.</li>
+          <li><b>Teach, don't fix.</b> It names exactly what needs to change and leaves the writing itself alone.</li>
         </ul>
-        <a class="btn primary sm" href="/inform">Explore InForm</a>
+        <div class="btnrow">
+          <a class="btn primary sm" href="https://marketplace.microsoft.com/en-us/product/office/WA200011804">Get It on AppSource</a>
+          <a class="btn ghost sm" href="/inform">Explore InForm</a>
+        </div>
       </div>
       <div class="shotwrap">
-        <div class="shot" role="img" aria-label="InForm inside Microsoft Word: an APA reference-formatting issue is explained in a side pane, alongside a source-verification result confirming the cited work is real.">
+        <div class="shot" role="img" aria-label="The InForm task pane inside Microsoft Word, showing findings grouped by how certain they are under a Ready to Insert heading, and a Reference Verification section reporting five references checked.">
           <div class="shot-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="shot-title">Paper.docx &middot; Word</span></div>
           <div class="inform-shot">
             <div class="doc">
@@ -258,21 +268,24 @@
               <div class="ln m" style="margin-top:16px"></div><div class="ln s"></div>
             </div>
             <div class="pane">
-              <div class="pane-head"><span class="m">sv</span> InForm</div>
-              <div class="card-f">
-                <span class="chip">APA 7</span>
-                <p class="ft">Reference entry, hanging indent</p>
-                <p>The second and later lines of a reference should be indented. Here they sit flush left.</p>
+              <div class="pane-brand"><span class="b1">ScholarVera</span><span class="b2">InForm</span><span class="b3">APA 7</span></div>
+              <div class="sectbar"><span>APA Formatting</span><b>10 Findings</b></div>
+              <div class="doorcard">
+                <div class="dt">Ready to Insert</div>
+                <div class="db">Mechanical findings. Nothing here needs your judgment.</div>
+                <div class="di">7 Findings</div>
               </div>
-              <div class="card-v">
-                <div class="vh">Source verification</div>
-                <div class="vrow"><span class="tick">&#10003;</span> Verified</div>
-                <div class="vcite">Garc&iacute;a, J. (2019). Multilingual writing development. DOI resolves; indexed in Crossref.</div>
+              <div class="rulerowm"><span>Reference entries need a hanging indent</span><b>5</b></div>
+              <div class="sectbar"><span>Reference Verification</span><b>5 Checked</b></div>
+              <div class="doorcard">
+                <div class="dt">Details Disagree</div>
+                <div class="di">1 Reference</div>
               </div>
+            </div>
             </div>
           </div>
         </div>
-        <p class="shot-cap">A finding, its explanation, and a live source check, without a word of your writing changed.</p>
+        <p class="shot-cap">Findings grouped by how certain they are, and every reference checked against the record.</p>
       </div>
     </div>
   </section>
@@ -282,38 +295,52 @@
     <div class="wrap inner">
       <div class="copy">
         <span class="status pilot">In pilot studies</span>
-        <h2>AI changed the question.</h2>
-        <p class="desc">Faculty increasingly need to understand not just what a student submitted, but how the work came together. WriteSight provides useful information about that process, without reducing it to an opaque score or automated accusation.</p>
+        <h2>The other half of the question.</h2>
+        <p class="desc">InForm can tell you a source is real. It cannot tell you how the paper came together. WriteSight records the writing process inside the document itself, then gives faculty a readable view of it, without reducing any of it to a score or an accusation.</p>
         <ul class="featlist">
           <li><b>Writing-process information</b> captured as a document is written.</li>
           <li><b>A concise faculty view</b> that turns that record into something readable at a glance.</li>
           <li><b>No integrity score.</b> It surfaces what may be worth discussing, and leaves the judgment to the educator.</li>
           <li><b>Privacy by design.</b> It records how the writing happened, not a copy of the writing itself.</li>
+          <li><b>An open roadmap.</b> What WriteSight becomes next is being worked out with the faculty piloting it.</li>
         </ul>
-        <a class="btn primary sm" href="/writesight">Explore WriteSight</a>
+        <a class="btn primary sm" href="/writesight">See What WriteSight Does</a>
       </div>
       <div class="shotwrap">
-        <div class="shot" role="img" aria-label="WriteSight faculty report: a writing-process summary showing sessions, active writing time, a revision timeline, and two neutral observations, with a clear note that there is no integrity score.">
+        <div class="shot" role="img" aria-label="The WriteSight faculty report: a one-sentence summary of how the document was built, a Worth A Closer Look box holding one plain observation, key figures for typing and pasting, and a timeline whose vertical cliff marks a pasted block.">
           <div class="shot-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="shot-title">WriteSight &middot; Writing process report</span></div>
           <div class="ws-shot">
-            <div class="ws-head">
-              <div class="ws-doc">Reflection Essay 2<span>Submitted for review</span></div>
-              <span class="ws-note">For a conversation, not a score</span>
+            <p class="wsh1">WriteSight</p>
+            <p class="wssub">Review how a document was written.</p>
+            <p class="wshead">This document was mostly typed in place, built in 3 sessions.</p>
+            <div class="ws-look">
+              <div class="th">Worth a closer look</div>
+              <div class="item">
+                <svg class="icon" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="#b08828" stroke-width="1.6" aria-hidden="true"><circle cx="7" cy="7" r="4.5"/><line x1="10.5" y1="10.5" x2="14" y2="14"/></svg>
+                <div>About 320 words were already present before recording began.</div>
+              </div>
             </div>
-            <div class="ws-stats">
-              <div class="stat"><b>4</b><span>writing sessions</span></div>
-              <div class="stat"><b>3h 40m</b><span>active writing</span></div>
-              <div class="stat"><b>12 days</b><span>draft to final</span></div>
+            <div class="ws-card">
+              <h4>How it was written</h4>
+              <div class="ws-kv"><span>Typed in place</span><span class="v">about 2,100 words</span></div>
+              <div class="ws-kv"><span>Pasted in</span><span class="v">about 240 words</span></div>
+              <div class="ws-kv"><span>Writing sessions</span><span class="v">3</span></div>
+              <div class="ws-kv"><span>Active writing time</span><span class="v">4 hours</span></div>
             </div>
-            <div class="ws-tl">
-              <div class="tlh">Activity across the assignment</div>
-              <div class="bars"><i style="height:35%"></i><i style="height:62%"></i><i style="height:48%"></i><i style="height:80%"></i><i style="height:40%"></i><i style="height:70%"></i><i style="height:55%"></i><i style="height:90%"></i><i style="height:44%"></i><i style="height:66%"></i></div>
+            <div class="ws-card">
+              <h4>Writing timeline</h4>
+              <p class="tnote">Document size across active writing time (idle breaks removed). A steady climb is composing; a vertical cliff is a block appearing at once.</p>
+              <svg class="tl" viewBox="0 0 300 132" role="img" aria-label="A line chart of document size over active writing time. The line climbs in steps, with one vertical cliff marking a pasted block.">
+                <line x1="26" y1="112" x2="294" y2="112" stroke="#ccc" stroke-width="1"/>
+                <line x1="26" y1="112" x2="26" y2="8" stroke="#ccc" stroke-width="1"/>
+                <path d="M26 112 L58 112 L58 96 L88 96 L88 84 L116 84 L116 46 L146 46 L146 40 L188 40 L188 30 L232 30 L232 22 L288 22"
+                      fill="none" stroke="#2f5d50" stroke-width="2" stroke-linejoin="round"/>
+                <circle cx="116" cy="46" r="4" fill="#b3261e"/>
+                <text x="123" y="43" font-size="9" fill="#1a1a1a" font-family="sans-serif">+1240</text>
+                <text x="29" y="19" font-size="9" fill="#888" font-family="sans-serif">4,180 chars</text>
+                <text x="212" y="126" font-size="9" fill="#888" font-family="sans-serif">38.4 min active</text>
+              </svg>
             </div>
-            <div class="ws-flags">
-              <div>Steady revision across sessions, from outline to final.</div>
-              <div>Two large pasted passages worth asking the student about.</div>
-            </div>
-            <div class="ws-noscore">No integrity score. No accusation. Just the process, for you to read.</div>
           </div>
         </div>
         <p class="shot-cap">A faculty-facing report built to start a conversation, not to hand down a verdict.</p>
@@ -379,7 +406,7 @@
   <section class="finalcta">
     <div class="wrap in">
       <h2>Scholarly technology should help people do better work. Not write it for them. Not judge it for them.</h2>
-      <p>That is the whole idea behind ScholarVera. Follow InForm to launch, or see what WriteSight shows faculty.</p>
+      <p>That is the whole idea behind ScholarVera. InForm is on Microsoft AppSource now, and WriteSight is in pilot with faculty.</p>
       <div class="btnrow">
         <a class="btn primary" href="/inform">Explore InForm</a>
         <a class="btn ghost" href="/writesight">Explore WriteSight</a>

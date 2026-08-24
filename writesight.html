@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>WriteSight: see how the paper came together. A Microsoft Word add-in by ScholarVera</title>
 <meta name="description" content="WriteSight is a Microsoft Word add-in that records how a document was written and gives faculty a clear view of the writing process. Built for a conversation about the work, never an integrity score or automated accusation.">
-<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTQiIGZpbGw9IiMyZjVkNTAiLz48dGV4dCB4PSIzMiIgeT0iNDUiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhLCAnVGltZXMgTmV3IFJvbWFuJywgc2VyaWYiIGZvbnQtc2l6ZT0iMzMiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiNmZmZmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGxldHRlci1zcGFjaW5nPSIxIj5zdjwvdGV4dD48L3N2Zz4K">
-<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:title" content="WriteSight: see how the paper came together">
 <meta property="og:description" content="A Microsoft Word add-in that records how a document was written and gives faculty the process behind a paper. A conversation, never a verdict.">
@@ -81,23 +81,24 @@
   .shot-bar{display:flex; align-items:center; gap:7px; padding:9px 14px; background:#f0ece3; border-bottom:1px solid var(--line)}
   .shot-bar .d{width:10px; height:10px; border-radius:50%; background:#d3ccbe}
   .shot-title{margin-left:9px; font-size:12px; color:var(--ink-faint); font-weight:500}
-  .ws-shot{padding:20px 20px 22px; background:#fbfbf9}
-  .ws-head{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:16px; flex-wrap:wrap}
-  .ws-doc{font-family:"Fraunces",serif; font-weight:600; font-size:16.5px; color:var(--ink)}
-  .ws-doc span{display:block; font-family:"Inter",sans-serif; font-weight:500; font-size:11.5px; color:var(--ink-faint); margin-top:2px}
-  .ws-note{font-size:11px; font-weight:600; color:var(--teal); background:#e7efec; padding:4px 10px; border-radius:100px; white-space:nowrap}
-  .ws-stats{display:grid; grid-template-columns:repeat(3,1fr); gap:11px; margin-bottom:16px}
-  .ws-stats .stat{background:#fff; border:1px solid var(--line); border-radius:9px; padding:13px 10px; text-align:center}
-  .ws-stats .stat b{display:block; font-family:"Fraunces",serif; font-size:22px; font-weight:600; color:var(--teal); line-height:1}
-  .ws-stats .stat span{display:block; font-size:11px; color:var(--ink-faint); margin-top:5px; letter-spacing:.02em}
-  .ws-tl{background:#fff; border:1px solid var(--line); border-radius:9px; padding:13px 14px; margin-bottom:15px}
-  .ws-tl .tlh{font-size:10.5px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:10px}
-  .ws-tl .bars{display:flex; align-items:flex-end; gap:6px; height:52px}
-  .ws-tl .bars i{flex:1; background:linear-gradient(180deg,#5a8577,#2f5d50); border-radius:3px 3px 0 0; opacity:.92}
-  .ws-flags{display:grid; gap:9px; margin-bottom:15px}
-  .ws-flags div{position:relative; font-size:13px; color:var(--ink); background:#fff; border:1px solid var(--line); border-radius:8px; padding:10px 12px 10px 30px}
-  .ws-flags div::before{content:""; position:absolute; left:12px; top:15px; width:8px; height:8px; border-radius:50%; background:var(--gold)}
-  .ws-noscore{font-size:12.5px; color:var(--ink-soft); font-style:italic; text-align:center; padding-top:2px}
+  /* WriteSight report mockup, rebuilt from faculty-review.js renderInto().
+     The real report is a headline sentence, a triage box, key/value cards and a
+     cumulative timeline whose vertical cliffs are pasted blocks. */
+  .ws-shot{padding:16px 16px 18px; background:#fff; font-family:"Inter",-apple-system,system-ui,sans-serif; color:#1a1a1a}
+  .ws-shot .wsh1{font-size:16px; font-weight:700; margin:0; letter-spacing:-.01em}
+  .ws-shot .wssub{color:#5c5c5c; font-size:11.5px; margin:1px 0 14px}
+  .ws-shot .wshead{font-size:13.5px; font-weight:600; margin:0 0 11px; line-height:1.4}
+  .ws-look{border:1px solid #e3c98c; background:#fbf5e6; border-radius:8px; padding:11px 13px; margin-bottom:12px}
+  .ws-look .th{font-weight:600; color:#8a6212; font-size:12.5px; margin-bottom:7px}
+  .ws-look .item{display:flex; align-items:flex-start; gap:8px; font-size:12px; color:#5a4710; line-height:1.45}
+  .ws-look .item svg{flex:none; margin-top:2px}
+  .ws-card{border:1px solid #e2e2e2; border-radius:8px; padding:11px 13px; margin-bottom:11px}
+  .ws-card h4{font-size:12.5px; margin:0 0 6px; font-weight:600}
+  .ws-kv{display:flex; justify-content:space-between; gap:10px; padding:5px 0; border-bottom:1px solid #e2e2e2; font-size:12px}
+  .ws-kv:last-child{border-bottom:none}
+  .ws-kv .v{font-weight:600; font-variant-numeric:tabular-nums}
+  .ws-card .tnote{color:#8a8a8a; font-size:10.5px; margin:0 0 7px; line-height:1.45}
+  .ws-card svg.tl{display:block; width:100%; max-width:340px; height:auto; border:1px solid #e2e2e2; border-radius:6px; margin-top:6px}
   .shot-cap{margin-top:12px; font-size:12.5px; color:var(--ink-faint); text-align:center}
 
   /* problem band */
@@ -122,6 +123,23 @@
   /* capabilities */
   .caps{padding:60px 0 20px}
   .caps h2{font-family:"Fraunces",serif; font-weight:500; font-size:clamp(24px,3.6vw,34px); margin:0 0 30px; letter-spacing:-.01em}
+
+  /* demo video */
+  .demo{padding:58px 0 6px}
+  .demo h2{font-family:"Fraunces",serif; font-weight:500; font-size:clamp(26px,4vw,38px); line-height:1.12; letter-spacing:-.01em; margin:0 0 8px}
+  .demo .sub{color:var(--ink-soft); font-size:16.5px; max-width:62ch; margin:0 0 26px}
+  .videoframe{border:1px solid var(--line); border-radius:14px; overflow:hidden; background:#efece5; line-height:0;
+    box-shadow:0 30px 60px -34px rgba(35,74,64,.5), 0 4px 14px -8px rgba(35,74,64,.25)}
+  .videoframe video{display:block; width:100%; height:auto}
+  .demo .fine2{font-size:13px; color:var(--ink-faint); margin:12px 2px 0}
+
+  /* roadmap: explicitly not-yet-built, so it is styled quieter than the shipped sections */
+  .roadmap h2{margin:0 0 10px}
+  .roadmap .rmsub{color:var(--ink-soft); font-size:16.5px; max-width:64ch; margin:0 0 32px}
+  .roadmap .cap{background:transparent; border-style:dashed}
+  .roadmap .rmtag{display:inline-block; font-size:11px; font-weight:600; letter-spacing:.09em; text-transform:uppercase;
+    color:var(--gold-dk); background:var(--gold-soft); border:1px solid #ecdcb4; border-radius:100px; padding:3px 10px; margin-bottom:12px}
+  .roadmap .rmnote{margin:30px 0 0; font-size:15.5px; color:var(--ink-soft); max-width:72ch}
   .capgrid{display:grid; grid-template-columns:repeat(2,1fr); gap:20px}
   .cap{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:24px 24px 26px}
   .cap h3{font-family:"Fraunces",serif; font-weight:600; font-size:19px; margin:0 0 9px; letter-spacing:-.01em}
@@ -203,28 +221,41 @@
     </div>
 
     <div class="wrap" style="margin-top:44px">
-      <div class="shot" role="img" aria-label="WriteSight faculty report: a writing-process summary showing four sessions, active writing time, days from draft to final, a revision timeline, and two neutral observations, with a clear note that there is no integrity score.">
+      <div class="shot" role="img" aria-label="The WriteSight faculty report: a one-sentence summary of how the document was built, a Worth A Closer Look box holding one plain observation, key figures for typing and pasting, and a timeline whose vertical cliff marks a pasted block.">
         <div class="shot-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="shot-title">WriteSight &middot; Writing process report</span></div>
-        <div class="ws-shot">
-          <div class="ws-head">
-            <div class="ws-doc">Reflection Essay 2<span>Submitted for review</span></div>
-            <span class="ws-note">For a conversation, not a score</span>
+          <div class="ws-shot">
+            <p class="wsh1">WriteSight</p>
+            <p class="wssub">Review how a document was written.</p>
+            <p class="wshead">This document was mostly typed in place, built in 3 sessions.</p>
+            <div class="ws-look">
+              <div class="th">Worth a closer look</div>
+              <div class="item">
+                <svg class="icon" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="#b08828" stroke-width="1.6" aria-hidden="true"><circle cx="7" cy="7" r="4.5"/><line x1="10.5" y1="10.5" x2="14" y2="14"/></svg>
+                <div>About 320 words were already present before recording began.</div>
+              </div>
+            </div>
+            <div class="ws-card">
+              <h4>How it was written</h4>
+              <div class="ws-kv"><span>Typed in place</span><span class="v">about 2,100 words</span></div>
+              <div class="ws-kv"><span>Pasted in</span><span class="v">about 240 words</span></div>
+              <div class="ws-kv"><span>Writing sessions</span><span class="v">3</span></div>
+              <div class="ws-kv"><span>Active writing time</span><span class="v">4 hours</span></div>
+            </div>
+            <div class="ws-card">
+              <h4>Writing timeline</h4>
+              <p class="tnote">Document size across active writing time (idle breaks removed). A steady climb is composing; a vertical cliff is a block appearing at once.</p>
+              <svg class="tl" viewBox="0 0 300 132" role="img" aria-label="A line chart of document size over active writing time. The line climbs in steps, with one vertical cliff marking a pasted block.">
+                <line x1="26" y1="112" x2="294" y2="112" stroke="#ccc" stroke-width="1"/>
+                <line x1="26" y1="112" x2="26" y2="8" stroke="#ccc" stroke-width="1"/>
+                <path d="M26 112 L58 112 L58 96 L88 96 L88 84 L116 84 L116 46 L146 46 L146 40 L188 40 L188 30 L232 30 L232 22 L288 22"
+                      fill="none" stroke="#2f5d50" stroke-width="2" stroke-linejoin="round"/>
+                <circle cx="116" cy="46" r="4" fill="#b3261e"/>
+                <text x="123" y="43" font-size="9" fill="#1a1a1a" font-family="sans-serif">+1240</text>
+                <text x="29" y="19" font-size="9" fill="#888" font-family="sans-serif">4,180 chars</text>
+                <text x="212" y="126" font-size="9" fill="#888" font-family="sans-serif">38.4 min active</text>
+              </svg>
+            </div>
           </div>
-          <div class="ws-stats">
-            <div class="stat"><b>4</b><span>writing sessions</span></div>
-            <div class="stat"><b>3h 40m</b><span>active writing</span></div>
-            <div class="stat"><b>12 days</b><span>draft to final</span></div>
-          </div>
-          <div class="ws-tl">
-            <div class="tlh">Activity across the assignment</div>
-            <div class="bars"><i style="height:35%"></i><i style="height:62%"></i><i style="height:48%"></i><i style="height:80%"></i><i style="height:40%"></i><i style="height:70%"></i><i style="height:55%"></i><i style="height:90%"></i><i style="height:44%"></i><i style="height:66%"></i></div>
-          </div>
-          <div class="ws-flags">
-            <div>Steady revision across sessions, from outline to final.</div>
-            <div>Two large pasted passages worth asking the student about.</div>
-          </div>
-          <div class="ws-noscore">No integrity score. No accusation. Just the process, for you to read.</div>
-        </div>
       </div>
       <p class="shot-cap">The faculty report: the writing process behind a paper, framed to start a conversation.</p>
     </div>
@@ -269,6 +300,27 @@
     </div>
   </section>
 
+  <!-- DEMO VIDEO -->
+  <section class="demo" id="demo">
+    <div class="wrap">
+      <span class="kicker">See it work</span>
+      <h2>Both sides of it, start to finish.</h2>
+      <p class="sub">What the student sees while they write, what the instructor sees afterwards, and what
+        WriteSight will not tell either of them. The last minute covers what is being explored next.</p>
+      <div class="videoframe">
+        <video controls preload="none" playsinline poster="writesight-demo-poster.jpg"
+               width="1920" height="1080"
+               aria-label="A demonstration of WriteSight recording a document as it is written, and the report an instructor sees afterwards.">
+          <source src="writesight-demo.mp4" type="video/mp4">
+          <track kind="captions" src="writesight-demo.vtt" srclang="en" label="English" default>
+          <p style="line-height:1.6; padding:20px">Your browser cannot play this video.
+            <a href="writesight-demo.mp4">Download it instead.</a></p>
+        </video>
+      </div>
+      <p class="fine2">Narrated, and captioned. Two minutes and twenty seconds.</p>
+    </div>
+  </section>
+
   <!-- WHAT IT SHOWS -->
   <section class="caps">
     <div class="wrap">
@@ -305,6 +357,50 @@
         <div class="step"><h3>Minimal collection</h3><p>WriteSight records the process, not the student's writing, and keeps that record with the document.</p></div>
         <div class="step"><h3>People stay central</h3><p>Faculty interpretation and the conversation with the student remain the point. The tool informs; it never decides.</p></div>
       </div>
+    </div>
+  </section>
+
+  <!-- ROADMAP -->
+  <section class="caps roadmap" id="roadmap">
+    <div class="wrap">
+      <span class="kicker">Where this is going</span>
+      <h2>Open questions, not promises.</h2>
+      <p class="rmsub">WriteSight is in pilot. None of what follows is built, and none of it is a commitment.
+        It is here because the faculty piloting WriteSight are the people who get to decide what comes next,
+        and it is easier to argue with a direction than to invent one.</p>
+      <div class="capgrid">
+        <div class="cap">
+          <span class="rmtag">Not built</span>
+          <h3>A view for the writer</h3>
+          <p>Today the report is built for faculty. A student-facing view, where a writer can show the process
+            behind their own work rather than be asked to defend it, is the change we hear asked for most.</p>
+        </div>
+        <div class="cap">
+          <span class="rmtag">Not built</span>
+          <h3>Growth across a body of work</h3>
+          <p>One document shows one paper. A writer's own history would show whether their process is changing.
+            Any version of this would compare derived signals rather than stored writing, and would be something
+            a student opts into, not something switched on around them.</p>
+        </div>
+        <div class="cap">
+          <span class="rmtag">Not built</span>
+          <h3>Patterns at the program level</h3>
+          <p>What a program leader needs is not a student's record but the shape of a cohort: where writing
+            practice is improving and where teaching is not landing. Curriculum diagnosis, never surveillance,
+            and nothing rendered at all below a minimum cohort size.</p>
+        </div>
+        <div class="cap">
+          <span class="rmtag">Deliberately not built</span>
+          <h3>InForm, inside WriteSight</h3>
+          <p>InForm checks whether the sources in a paper can be verified. WriteSight records how the paper was
+            written. Putting the first inside the second is a small technical step, and we have not taken it on
+            purpose. A process record and a source that cannot be verified are each a fact; set side by side in
+            one panel they invite a conclusion neither one supports. That problem gets solved before the
+            feature does.</p>
+        </div>
+      </div>
+      <p class="rmnote">If you are piloting WriteSight and one of these matters to your program, say so. That is
+        how the order gets decided.</p>
     </div>
   </section>
 
