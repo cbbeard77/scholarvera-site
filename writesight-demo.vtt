@@ -1,0 +1,203 @@
+WEBVTT
+
+1
+00:00:00.700 --> 00:00:01.778
+This is WriteSight.
+
+2
+00:00:01.778 --> 00:00:05.921
+A Microsoft Word add-in that records
+how a document was written, and gives
+
+3
+00:00:05.921 --> 00:00:08.191
+faculty a readable view of that process.
+
+4
+00:00:08.691 --> 00:00:11.066
+For the student there
+is almost nothing to it.
+
+5
+00:00:11.066 --> 00:00:14.285
+They open the assignment, enter
+the code their instructor gave
+
+6
+00:00:14.285 --> 00:00:15.974
+them, and press Begin recording.
+
+7
+00:00:16.424 --> 00:00:19.531
+From then on it runs whenever
+the document is open.
+
+8
+00:00:19.531 --> 00:00:21.644
+Nothing to start, nothing to stop.
+
+9
+00:00:22.094 --> 00:00:26.550
+What it records is the shape of the work.
+Typing, pausing, pasting, revising.
+
+10
+00:00:26.550 --> 00:00:30.477
+It never records the writing itself,
+and the record stays inside the
+
+11
+00:00:30.477 --> 00:00:32.412
+document rather than on a server.
+
+12
+00:00:32.912 --> 00:00:37.088
+When the instructor opens that same
+document, they see something different.
+
+13
+00:00:37.088 --> 00:00:37.596
+A report.
+
+14
+00:00:37.996 --> 00:00:39.533
+It opens with a sentence.
+
+15
+00:00:39.533 --> 00:00:43.467
+This document was mostly typed in
+place, built in three sessions.
+
+16
+00:00:43.917 --> 00:00:45.056
+Then one of two boxes.
+
+17
+00:00:45.056 --> 00:00:48.629
+Either nothing about how the document
+was built stands out, or here is
+
+18
+00:00:48.629 --> 00:00:50.389
+what might be worth a closer look.
+
+19
+00:00:50.839 --> 00:00:53.591
+Each observation is one plain sentence.
+
+20
+00:00:53.591 --> 00:00:57.755
+About 320 words were already
+present before recording began.
+
+21
+00:00:57.755 --> 00:01:01.142
+Notice what it does not say.
+It does not say why.
+
+22
+00:01:01.642 --> 00:01:03.078
+Below that, the figures.
+
+23
+00:01:03.078 --> 00:01:07.026
+How much was typed, how much was
+pasted, how many sittings, and how
+
+24
+00:01:07.026 --> 00:01:09.180
+long the writer was actually active.
+
+25
+00:01:09.630 --> 00:01:13.303
+Then the timeline, which is the
+part faculty look at longest.
+
+26
+00:01:13.303 --> 00:01:15.506
+A steady climb is someone composing.
+
+27
+00:01:15.506 --> 00:01:18.934
+A vertical cliff is a block
+of text arriving all at once.
+
+28
+00:01:19.434 --> 00:01:21.286
+The record also checks itself.
+
+29
+00:01:21.286 --> 00:01:24.497
+If it was altered after the
+fact, the report says so.
+
+30
+00:01:24.947 --> 00:01:30.051
+What you will not find anywhere is a score.
+No percentage, no risk level, no accusation.
+
+31
+00:01:30.051 --> 00:01:33.865
+WriteSight produces no verdict,
+because a verdict is the one thing
+
+32
+00:01:33.865 --> 00:01:35.918
+a tool cannot responsibly hand you.
+
+33
+00:01:36.468 --> 00:01:39.832
+WriteSight is in pilot, and what
+it becomes next is being worked
+
+34
+00:01:39.832 --> 00:01:41.434
+out with the faculty using it.
+
+35
+00:01:41.834 --> 00:01:46.234
+A view for the writer, so a student can
+show their process rather than defend it.
+
+36
+00:01:46.234 --> 00:01:48.984
+A sense of how one writer's
+work changes over time.
+
+37
+00:01:48.984 --> 00:01:52.009
+Patterns at the level of a
+program rather than a person.
+
+38
+00:01:52.509 --> 00:01:54.850
+And one we have deliberately not built.
+
+39
+00:01:54.850 --> 00:01:59.171
+InForm, our other add-in, checks
+whether the sources in a paper are real.
+
+40
+00:01:59.171 --> 00:02:03.252
+Putting that inside this report is
+a small step, but a process record
+
+41
+00:02:03.252 --> 00:02:07.393
+beside an unverified source invites
+a conclusion neither one supports.
+
+42
+00:02:07.393 --> 00:02:08.773
+That gets solved first.
+
+43
+00:02:09.323 --> 00:02:13.386
+WriteSight, from ScholarVera.
+In pilot with universities now.
+
+44
+00:02:13.386 --> 00:02:17.178
+Tell us about your program at
+scholarvera.com/writesight.
