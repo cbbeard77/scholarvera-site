@@ -120,9 +120,12 @@
       <p>WriteSight observes how a document is constructed while you write, patterns of typing, pasting, and revision over time, and assembles that into a "provenance record." This record is meant to give faculty context for a conversation about the writing process. It does not capture the meaning or content of what you write as something we receive; it describes how the document came together.</p>
       <h3>Where that record lives</h3>
       <p>The provenance record is stored inside the .docx file itself, in a dedicated part of the document. It travels with the file. When you submit your document, the record goes wherever the document goes, to your learning management system or to your instructor, exactly like the rest of the file's contents.</p>
-      <p><b>Under the standard WriteSight workflow, ScholarVera does not receive this record.</b> Because it lives inside your document and not on our servers, we do not collect it or store it centrally. It is shared only when you share the document itself, most often with an instructor reviewing submitted work.</p>
+      <p><b>Under the standard WriteSight workflow, ScholarVera does not receive this record.</b> Because it lives inside your document and not on our servers, we do not collect it or store it centrally. The one thing we do receive is described under Tamper-evidence below, and it is a fingerprint of the record rather than the record itself. It is shared only when you share the document itself, most often with an instructor reviewing submitted work.</p>
       <h3>Tamper-evidence</h3>
-      <p>The record includes integrity protection so that later alteration can be detected. This protection operates within your document and your signed-in session; it does not involve sending your writing to us.</p>
+      <p>The record includes integrity protection so that later alteration can be detected. Part of that protection is a periodic check-in with ScholarVera while you write. Your document sends us a short fingerprint of the record so far, the number of entries it holds, and the document's own identifier. We write that down, note the time we received it, and send back a signature that is stored in your document. That signature is what later allows an instructor to confirm the record has not been rewritten since.</p>
+      <p><b>What we receive is a fingerprint, not the record and not your writing.</b> A fingerprint is a fixed-length string of characters calculated from the record. It cannot be turned back into the record, and the record itself never contains what you wrote. We keep the fingerprint, the entry count, the document identifier, the time, and which account sent it.</p>
+      <p>Because we note the time of each check-in, we hold a rough record of when a document was being worked on. We do not hold what was written at any of those times, and we never have.</p>
+      <p>If your computer is offline, if you are signed out, or if our service is unavailable, WriteSight carries on recording exactly as it otherwise would. Nothing about your writing depends on reaching us.</p>
       <h3>Who can see the record</h3>
       <p>Anyone you give the document to, using compatible software, can view the provenance record, most commonly an instructor reviewing submitted work. ScholarVera is not a party to that exchange.</p>
     </div>
@@ -173,6 +176,7 @@
       <ul>
         <li><b>Account data</b>, as described in the accounts section above.</li>
         <li><b>Aggregate, de-identified usage counts</b> from InForm, as described above, which contain no writing and nothing that identifies you.</li>
+        <li><b>Provenance check-ins</b> from WriteSight, as described above: a fingerprint of the record, an entry count, a document identifier, a timestamp, and the account. No writing, and nothing that can be turned back into writing.</li>
         <li><b>Basic technical and service data.</b> Like most hosted services, our infrastructure may process standard technical information, such as request logs, needed to run, secure, and troubleshoot the service.</li>
         <li><b>What you send us directly.</b> If you email us for support or fill out a form, we receive what you send.</li>
       </ul>
