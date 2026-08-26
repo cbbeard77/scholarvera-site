@@ -1,0 +1,5 @@
+# Cloudflare Pages response headers.
+# Font filenames carry a content hash, so a changed file is a new URL and a year
+# of immutable caching is safe. Never point this at an unhashed filename.
+/*.woff2
+  Cache-Control: public, max-age=31536000, immutable

@@ -8,10 +8,34 @@
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTQiIGZpbGw9IiMyZjVkNTAiLz48dGV4dCB4PSIzMiIgeT0iNDUiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhLCAnVGltZXMgTmV3IFJvbWFuJywgc2VyaWYiIGZvbnQtc2l6ZT0iMzMiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiNmZmZmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGxldHRlci1zcGFjaW5nPSIxIj5zdjwvdGV4dD48L3N2Zz4K">
 <meta name="theme-color" content="#2f5d50">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,400;9..144,0,500;9..144,0,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" as="font" type="font/woff2" href="/fraunces.42a47e20.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/inter.2dd9f002.woff2" crossorigin>
 <style>
+  /* -------------------------------------------------------------------
+     SELF-HOSTED, AND DELIBERATELY font-display:optional.
+
+     The fonts used to come from Google, arriving after the first paint, so
+     every page painted once in the fallback and again in Fraunces and Inter.
+     The second paint is never identical: letter widths differ, lines rebreak,
+     blocks change height, and the page visibly jumped. That was the whole of
+     the Cumulative Layout Shift score.
+
+     "optional" gives each face a block period of about 100ms and NO swap
+     period. The browser either has the font in time and uses it, or keeps the
+     fallback below for that page load and never switches mid-visit. The file
+     still caches, so a returning visitor gets the real face.
+
+     Filenames carry a content hash, which is what makes the year-long
+     immutable caching in _headers safe. CHANGING A FONT FILE MEANS A NEW HASH
+     IN THE NAME, here and in the preload tags above.
+     ------------------------------------------------------------------- */
+  @font-face{font-family:"Fraunces";src:url("/fraunces.42a47e20.woff2") format("woff2");
+    font-weight:100 900;font-style:normal;font-display:optional}
+  @font-face{font-family:"Fraunces";src:url("/fraunces-italic.d254ed05.woff2") format("woff2");
+    font-weight:100 900;font-style:italic;font-display:optional}
+  @font-face{font-family:"Inter";src:url("/inter.2dd9f002.woff2") format("woff2");
+    font-weight:100 900;font-style:normal;font-display:optional}
+
   /* ---------------------------------------------------------------------
      METRIC-MATCHED FALLBACKS.
 
@@ -88,7 +112,7 @@
   .foot-links{display:flex; gap:18px; flex-wrap:wrap}
   .foot-links a{color:var(--ink-soft); text-decoration:none; font-weight:500}
   .foot-links a:hover{color:var(--teal)}
-  .foot-note{margin-top:14px; font-size:12.5px; color:var(--ink-faint); max-width:78ch}
+  .foot-note{margin-top:14px; font-size:12.5px; color:var(--ink-faint); max-width:49.207em}
   :focus-visible{outline:2px solid var(--teal); outline-offset:3px; border-radius:3px}
 </style>
 </head>
